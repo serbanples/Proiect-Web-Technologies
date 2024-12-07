@@ -1,4 +1,3 @@
-import React from 'react'
 import GenericForm from '../components/Form'
 import { ButtonType, FormField } from '../components/types';
 import { useNavigate } from 'react-router-dom';
@@ -17,12 +16,21 @@ const Signup = () => {
     { name: 'signup', label: 'Create account', type: 'submit' },
     { name: 'nav', label: 'Log in', type: 'button', onClick: () => {navigate("/login")} }
   ]
+
+  const handleSignup = (formData: Record<string, string | number>) => {
+    console.log(formData)
+    if (formData.password !== formData.confirmPassword) {
+      // TO DO: toast
+      console.log ("nu")
+    }
+  }
+
   return (
     <GenericForm
       title={title}
       fields={fields}
       buttons={buttons}
-      onSubmit={(formData) => console.log(formData)} 
+      onSubmit={handleSignup} 
     >
     </GenericForm>
   )
