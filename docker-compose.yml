@@ -1,0 +1,40 @@
+version: '3.9'
+
+services: 
+  mongodb: 
+    image: mongo:6.0
+    container_name: mongodb_web_tech
+    ports: 
+      - "27017:27017"
+    volumes: 
+      - mongodb_data:/data/db
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server_web_tech
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/usr/src/app
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+    volumes:
+      - ./frontend:/usr/src/app
+
+volumes:
+  mongodb_data:
+    
+    
