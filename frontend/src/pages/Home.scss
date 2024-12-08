@@ -1,0 +1,51 @@
+/* HomePage.scss */
+.home-page {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out; /* Smooth transition for layout shift */
+  }
+  
+  .project-table-container {
+    margin-top: 60px; /* Adjust to menu bar height */
+    padding-right: 250px; /* Space for side panel */
+    transition: padding-right 0.3s ease-in-out; /* Smooth transition for padding */
+  }
+  
+  .project-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .project-table th,
+  .project-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .project-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .project-table td {
+    background-color: #fff;
+  }
+  
+  .project-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Adjust content container when side panel is open */
+  .side-panel.open + .content-container {
+    transform: translateX(250px); /* Shift content to the right when side panel opens */
+  }
+  
+  .side-panel.open + .content-container .project-table-container {
+    padding-right: 0; /* Remove right padding to make room for side panel */
+  }
+  

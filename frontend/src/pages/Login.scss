@@ -1,0 +1,15 @@
+.full-screen {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-page {
+  width: 100% !important;
+  height: 100vh !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(0,0,0,1) 20%, rgba(89,89,89,1) 70%, rgba(157,157,157,1) 100%);
+}

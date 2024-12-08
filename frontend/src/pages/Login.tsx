@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import GenericForm from '../components/Form'
 import { ButtonType, FormField } from '../components/types';
+import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,18 +11,22 @@ const Login = () => {
     { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter password', required: true }
   ];
   const buttons: ButtonType[] = [
-    { name: 'login', label: 'Log in', type: 'submit' },
-    { name: 'nav', label: 'Create Account', type: 'button', onClick: () => {navigate("/signup")} }
+    { name: 'submit', label: 'Log in', type: 'submit' },
+    { name: 'signup', label: 'Create Account', type: 'button', onClick: () => {navigate("/signup")} }
   ]
   return (
-    <GenericForm
-      title={title}
-      fields={fields}
-      buttons={buttons}
-      onSubmit={(formData) => console.log(formData)} 
-    >
-    </GenericForm>
-  )
+    <div className="login-page">
+      <div className="login-form-container">
+        <GenericForm
+          title={title}
+          fields={fields}
+          buttons={buttons}
+          onSubmit={(formData) => console.log(formData)}
+        />
+      </div>
+    </div>
+  );
+  
 }
 
 export default Login

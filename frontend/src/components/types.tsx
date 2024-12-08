@@ -12,3 +12,18 @@ export type ButtonType = {
     type: 'submit' | 'button';
     onClick?: (event: React.MouseEvent) => void;
 };
+
+export enum Status {
+  ToDo = 'To Do',
+  InProgress = 'In Progress',
+  QA = 'QA',
+  Done = 'Done'
+}
+
+export type Project = {
+  id: number;
+  name: string;
+  description: string;
+  status: Status;
+  dueDate: string;
+}
