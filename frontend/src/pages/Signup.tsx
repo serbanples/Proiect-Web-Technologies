@@ -13,8 +13,8 @@ const Signup = () => {
     { name: 'confirmPassword', label: 'Confirm Password', type: 'password', placeholder: 'Re-enter your password', required: true }
   ];
   const buttons: ButtonType[] = [
-    { name: 'signup', label: 'Create account', type: 'submit' },
-    { name: 'nav', label: 'Log in', type: 'button', onClick: () => {navigate("/login")} }
+    { name: 'submit', label: 'Create account', type: 'submit' },
+    { name: 'login', label: 'Log in', type: 'button', onClick: () => {navigate("/login")} }
   ]
 
   const handleSignup = (formData: Record<string, string | number>) => {
@@ -26,14 +26,17 @@ const Signup = () => {
   }
 
   return (
-    <GenericForm
-      title={title}
-      fields={fields}
-      buttons={buttons}
-      onSubmit={handleSignup} 
-    >
-    </GenericForm>
-  )
+    <div className=".full-screen login-page">
+      <div className="login-form-container">
+        <GenericForm
+          title={title}
+          fields={fields}
+          buttons={buttons}
+          onSubmit={handleSignup} 
+        />
+      </div>
+    </div>
+  );
 }
 
 export default Signup;

@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { ButtonType, FormField } from './types';
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
-import {eye} from 'react-icons-kit/feather/eye'
+import {eye} from 'react-icons-kit/feather/eye';
+import './Form.scss';
+
 
 type GenericFormProps = {
   title: string;
@@ -51,21 +53,14 @@ const GenericForm: React.FC<GenericFormProps> = ({ title, fields, buttons, onSub
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>{title}</h2>
+    <form className="generic-form" onSubmit={handleSubmit}>
+      <h2 className="generic-form__title">{title}</h2>
       {fields.map((field) => (
-        <div key={field.name} style={{ marginBottom: '1rem' }}>
-          <label htmlFor={field.name} style={{ display: 'block', marginBottom: '.5rem' }}>
+        <div key={field.name} className="generic-form__field">
+          <label htmlFor={field.name} className="generic-form__label">
             {field.label}
           </label>
-          <span style={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            overflow: 'hidden',
-          }}>
+          <span className="generic-form__input-wrapper">
           {field.type === 'password' ? (
             <>
             <input
@@ -76,50 +71,49 @@ const GenericForm: React.FC<GenericFormProps> = ({ title, fields, buttons, onSub
               required={field.required}
               value={formData[field.name] as string}
               onChange={handleChange}
-              style={{
-                flex: 1,
-                padding: '.5rem',
-                border: 'none',
-                outline: 'none',
-              }}            
+              className={`generic-form__input ${"custom-placeholder-class"}`}
             />
             <button
               type="button"
               onClick={() => togglePasswordVisibility(field.name)}
-              style={{
-                background: 'none',
-                border: 'none',
-                padding: '.5rem',
-                cursor: 'pointer',
-                outline: 'none',
-              }}
+              className="generic-form__toggle-button"
             >
               {passwordVisibility[field.name] ? <Icon icon={eyeOff} /> : <Icon icon={eye} /> }
             </button>
             </>
           ) : (
             <input
-            id={field.name}
-            name={field.name}
-            type={field.type}
-            placeholder={field.placeholder}
-            required={field.required}
-            value={formData[field.name] as string}
-            onChange={handleChange}
-            style={{ width: '100%', padding: '.5rem' }}
+              id={field.name}
+              name={field.name}
+              type={field.type}
+              placeholder={field.placeholder}
+              required={field.required}
+              value={formData[field.name] as string}
+              onChange={handleChange}
+              className={`generic-form__input ${"custom-placeholder-class"}`}
             />
           )}
           </span>
         </div>
       ))}
 
-      {buttons.map((button: ButtonType) => (
+      {buttons.map((button: ButtonType, index) => (
+        <span key={button.name} className="generic-form__button-wrapper">
+        {index === 1 && (
+          <span className="generic-form__helper-text">
+            {button.name === 'login' ? 'Already have an account?' : 'New here?'}
+          </span>
+        )}
         <button
-          key={button.name}
           type={button.type}
           onClick={button.onClick}
-          style={{ padding: '.5rem 1rem' }}
-          >{button.label}</button>
+          className={`generic-form__button ${
+            index === 0 ? 'generic-form__button--primary' : ''
+          }`}
+        >
+          {button.label}
+        </button>
+      </span>
       ))}
     </form>
   );
