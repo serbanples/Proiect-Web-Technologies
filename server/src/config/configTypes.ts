@@ -3,4 +3,5 @@ export interface CONFIG_TYPES {
         readonly PORT: number;
     },
     readonly db: string;
+    readonly mongoQueryLimit: number;
 }

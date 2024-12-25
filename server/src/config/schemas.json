@@ -1,0 +1,37 @@
+{
+    "projectName": "Web Technologies Project",
+    "routes": [
+        {
+            "name": "register",
+            "path": "/auth",
+            "class": "AuthLib",
+            "params": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "location": "body",
+                    "required": "true",
+                    "description": "name of the user creating the account"
+                }, {
+                    "name": "password",
+                    "type": "string",
+                    "location": "body",
+                    "required": "true",
+                    "description": "password of the user creating the account"
+                }, {
+                    "name": "email",
+                    "type": "string",
+                    "location": "body",
+                    "required": "true",
+                    "description": "email of the user creating the account"
+                }, {
+                    "name": "confirmedPassword",
+                    "type": "string",
+                    "location": "body",
+                    "required": "true",
+                    "description": "confirmed password of the user creating the account"
+                }
+            ]
+        }
+    ]
+}

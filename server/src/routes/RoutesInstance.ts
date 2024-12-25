@@ -9,15 +9,23 @@ export class RoutesInstance {
 
     constructor(middlewares: MiddlewareInstance) {
         this.middlewareInstance = middlewares;
-        this.authRoutes = new AuthRoutes(middlewares.authMiddleware);
-        this.initializeRoutes();
+        this.authRoutes = new AuthRoutes(this.middlewareInstance.authMiddleware);
+        this.router.use('/api', this.initializeRoutes())
     }
 
     getRouter(): Router {
         return this.router;
     }
 
-    private initializeRoutes(): void {
-        this.router.use('/auth', this.authRoutes.getRouter());
+    /**
+     * Method used to initialize the routes
+     * 
+     * @returns {Router} router with all application routes
+     */
+    private initializeRoutes(): Router {
+        const router = Router();
+        router.use('/auth', this.authRoutes.getRouter());
+
+        return router;
     }
 }
