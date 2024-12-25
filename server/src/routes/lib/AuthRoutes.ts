@@ -24,7 +24,7 @@ export class AuthRoutes {
     private initializeRoutes(): void {
         this.router.post('/login', this.login.bind(this));
         this.router.post('/register', this.register.bind(this));
-        this.router.get('/status', this.checkStatus.bind(this));
+        this.router.get('/whoami', this.whoami.bind(this));
         this.router.post('/logout', this.logout.bind(this));
     }
 
@@ -55,7 +55,7 @@ export class AuthRoutes {
      */
     private async register(req: Request, res: Response, next?: NextFunction): Promise<void> {
         return this.middleware.register(req)
-            .then((result) => sendValidResponse(result, res, 201))
+            .then((result) => sendValidResponse({ response: result }, res, 201))
             .catch((error) => sendErrorResponse(error, res))
     }
 
@@ -67,8 +67,8 @@ export class AuthRoutes {
      * @param {NextFunction} next callback function
      * @returns {Promise<void>} handles check status requests
      */
-    private async checkStatus(req: Request, res: Response, next?: NextFunction): Promise<void> {
-        return this.middleware.checkStatus(req)
+    private async whoami(req: Request, res: Response, next?: NextFunction): Promise<void> {
+        return this.middleware.whoami(req)
             .then((userContext) => sendValidResponse(userContext, res, 200))
             .catch((error) => sendErrorResponse(error, res));
     }

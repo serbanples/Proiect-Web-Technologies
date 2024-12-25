@@ -1,9 +1,9 @@
 import { describe, expect, it } from "@jest/globals";
-import * as auth from "../../bzl/coreBzl/auth";
-import { RegisterRequest } from "../../types";
-import { UserModel } from "../../models/lib/UserModel";
-import { UserModelType } from "../../models/types";
-import { Factory } from "../../factory";
+import * as auth from "../../src/bzl/coreBzl/auth";
+import { RegisterRequest } from "../../src/types";
+import { UserModel } from "../../src/models/lib/UserModel";
+import { UserModelType } from "../../src/models/types";
+// import { Factory } from "../../factory";
 
 describe('Tests for register user method', () => {
     

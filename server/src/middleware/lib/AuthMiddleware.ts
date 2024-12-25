@@ -43,7 +43,7 @@ export class AuthMiddleware {
      * @param {Request} req status request
      * @returns {Promise<string>} status response.
      */
-    async checkStatus(req: Request): Promise<UserContext> {
+    async whoami(req: Request): Promise<UserContext> {
         return extractCookie(req);
     }
 
