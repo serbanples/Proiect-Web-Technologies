@@ -1,17 +1,35 @@
 import { Factory } from "../../factory";
-import { LoginRequest, RegisterRequest } from "../../types";
+import { LoginRequest, RegisterRequest, UserContext } from "../../types";
 
-export const login = async (loginRequest: LoginRequest) => {
-    return Factory.getInstance().getBzl().authLib.login(loginRequest)
-        .then()
-}
-
-export const checkLoggedIn = async (authStatusRequest: any) => {
-
-}
-
+/**
+ * Method used to register a user.
+ * 
+ * @param {RegisterRequest} registerRequest registration form.
+ * @returns {Promise<boolean>} true if user has been registered, error if not.
+ */
 export const register = async (registerRequest: RegisterRequest): Promise<boolean> => {
     return Factory.getInstance().getBzl().authLib.register(registerRequest)
-        .then((user) => true)
+        .then(() => true)
         .catch((error) => { throw error; });
+}
+
+/**
+ * Method used to login a user.
+ * 
+ * @param {LoginRequest} loginRequest login form.
+ * @returns {string} jwt token.
+ */
+export const login = async (loginRequest: LoginRequest): Promise<string> => {
+    return Factory.getInstance().getBzl().authLib.login(loginRequest)
+        .catch(error => { throw error; });
+}
+
+/**
+ * Method used in order to decode a token
+ * 
+ * @param {string} token jwt token.
+ * @returns {UserContext} details about the user.
+ */
+export const decodeToken = (token: string): UserContext => {
+    return Factory.getInstance().getBzl().authLib.verifyToken(token);
 }

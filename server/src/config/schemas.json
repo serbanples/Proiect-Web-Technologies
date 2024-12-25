@@ -32,6 +32,26 @@
                     "description": "confirmed password of the user creating the account"
                 }
             ]
+        }, {
+            "name": "login",
+            "path": "/auth",
+            "class": "AuthLib",
+            "params": [
+                {
+                    "name": "email",
+                    "type": "string",
+                    "location": "body",
+                    "required": "true",
+                    "description": "email of the user logging in the account"
+                },
+                {
+                    "name": "password",
+                    "type": "string",
+                    "location": "body",
+                    "required": "true",
+                    "description": "password of the user logging in the account"
+                }
+            ]
         }
     ]
 }

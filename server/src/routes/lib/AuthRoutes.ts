@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { AuthMiddleware } from "../../middleware/lib/AuthMiddleware";
 import { BadRequest, NotFound } from "../../errors/CustomErrors";
+import { attachCookie, sendErrorResponse, sendValidResponse } from "../helper";
 
 export class AuthRoutes {
     private router: Router = Router();
@@ -23,6 +24,8 @@ export class AuthRoutes {
     private initializeRoutes(): void {
         this.router.post('/login', this.login.bind(this));
         this.router.post('/register', this.register.bind(this));
+        this.router.get('/status', this.checkStatus.bind(this));
+        this.router.post('/logout', this.logout.bind(this));
     }
 
     /**
@@ -31,11 +34,15 @@ export class AuthRoutes {
      * @param {Request} req request
      * @param {Response} res response
      * @param {NextFunction} next callback function
-     * @returns {void} handles login requests
+     * @returns {Promise<void>} handles login requests
      */
-    private login(req: Request, res: Response, next?: NextFunction) {
-        this.middleware.login(req, res)
-            // .then((data) => res.send(data));
+    private async login(req: Request, res: Response, next?: NextFunction): Promise<void> {
+        return this.middleware.login(req)
+            .then((token) => {
+                attachCookie(res, token);
+                sendValidResponse({ response: 'Logged in!' }, res, 200);
+            })
+            .catch(error => sendErrorResponse(error, res));
     }
 
     /**
@@ -44,27 +51,39 @@ export class AuthRoutes {
      * @param {Request} req request
      * @param {Response} res response
      * @param {NextFunction} next callback function
-     * @returns {void} handles register requests
+     * @returns {Promise<void>} handles register requests
      */
-    private register(req: Request, res: Response, next?: NextFunction) {
-        return this.middleware.register(req, res)
-            .then((result) => {
-                res.statusCode = 201;
-                res.send({ success: result })
-            })
-            .catch((error) => {
-                console.log(error);
-                if(error instanceof BadRequest) {
-                    res.statusCode = 400;
-                    res.send({ error: error.message });
-                }
-                else if(error instanceof NotFound) {
-                    res.statusCode = 404;
-                    res.send({ error: error.message });
-                } else {
-                    res.statusCode = 500;
-                    res.send({ error: error.message });
-                }
-            })
+    private async register(req: Request, res: Response, next?: NextFunction): Promise<void> {
+        return this.middleware.register(req)
+            .then((result) => sendValidResponse(result, res, 201))
+            .catch((error) => sendErrorResponse(error, res))
+    }
+
+    /**
+     * Method used in order to see if a user is logged in or not.
+     * 
+     * @param {Request} req request
+     * @param {Response} res response
+     * @param {NextFunction} next callback function
+     * @returns {Promise<void>} handles check status requests
+     */
+    private async checkStatus(req: Request, res: Response, next?: NextFunction): Promise<void> {
+        return this.middleware.checkStatus(req)
+            .then((userContext) => sendValidResponse(userContext, res, 200))
+            .catch((error) => sendErrorResponse(error, res));
+    }
+
+    /**
+     * Method used in order to logout a user.
+     * 
+     * @param {Request} req request
+     * @param {Response} res response
+     * @param {NextFunction} next callback function
+     * @returns {Promise<void>} handles logout requests
+     */
+    private async logout(req: Request, res: Response, next?: NextFunction): Promise<void> {
+        return this.middleware.logout(req, res)
+            .then(() => sendValidResponse({ response: 'Logged out successfully' }, res, 200))
+            .catch((error) => sendErrorResponse(error, res));
     }
 }

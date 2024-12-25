@@ -2,13 +2,14 @@ import mongoose, { SchemaDefinitionProperty } from "mongoose";
 import { Abs } from "./Abs";
 import { ModelNameEnum, PopulateOpts } from "../utils/types";
 import { UserModelType } from "../types";
-import { transformFn } from "../utils/utils";
+import { toBoolean, transformFn } from "../utils/utils";
+import { logger } from "../../logger";
 
 export class UserModel extends Abs<UserModelType> {
     protected SchemaDef: mongoose.SchemaDefinition = {
         name: { type: String, required: true, unique: false },
         email: { type: String, required: true, unique: true },
-        password: { type: String, required: true },
+        password: { type: String, required: true, select: false },
         createdAt: { type: Date }
     };
 
@@ -30,5 +31,18 @@ export class UserModel extends Abs<UserModelType> {
     protected addSchemaEnhancement(): void {
         this.Schema.index({ name: 1 });
         this.Schema.index({ email: 1 });
+    }
+
+    /**
+     * Custom find One method in order to return password.
+     * 
+     * @param {object} filter mongo db query
+     * @returns {Promise<UserModelType | null>} returned user.
+     */
+    public async findOneWithPassword(filter: object): Promise<UserModelType | null> {
+        return this.Model.findOne(filter).select('+password').exec()
+            .then(async response => response ? response : null)
+            .then(response => response ? response.toObject() as UserModelType : null)
+            .catch(error => { logger.error(error); throw error; });
     }
 }

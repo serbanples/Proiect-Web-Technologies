@@ -1,3 +1,8 @@
+export interface UserContext {
+    id: string;
+    email: string;
+}
+
 // QueryFilter
 
 export interface QueryPaginationFilter {
@@ -21,7 +26,7 @@ export interface ResourceWithPagination<T> {
 // Requests
 
 export interface LoginRequest {
-    username: string;
+    email: string;
     password: string;
 }
 

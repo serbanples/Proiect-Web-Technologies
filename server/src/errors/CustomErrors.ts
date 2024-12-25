@@ -9,3 +9,9 @@ export class NotFound extends Error {
         super(message);
     }
 }
+
+export class Unauthorized extends Error {
+    constructor(message: any) {
+        super(message);
+    }
+}

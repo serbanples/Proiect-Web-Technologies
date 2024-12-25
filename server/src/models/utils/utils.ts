@@ -3,11 +3,19 @@ import { config } from "../../config/config";
 import { QueryPaginationFilter } from "../../types";
 import { PaginationFilter } from "./types";
 
+/**
+ * Method used to transform mongo documents after querying them.
+ * 
+ * @param doc mongo document
+ * @param ret returned document
+ * @param options additional options
+ */
 export const transformFn = (doc: any, ret: any, options: any): void => {
     if(ret._id)
         ret._id = ret._id.toString();
     delete ret._id;
-    delete ret._v;
+    delete ret.__v;
+    // delete ret.password;
 }
 
 /**
@@ -66,6 +74,14 @@ export const validatePaginationFilter = (originalPagination: QueryPaginationFilt
     }
 }
 
+/**
+ * Method used to add free text search filter.
+ * 
+ * @param {string} textFilter text to search for
+ * @param {string[]} searchFields fields to look for with free text.
+ * @param {object} query original query.
+ * @returns {object} query with free text search.
+ */
 export const addTextQuery = (textFilter: string, searchFields: string[], query: object): object => {
     const text = textFilter || '';
     query = _.omit(['text']);
@@ -84,6 +100,12 @@ export const addTextQuery = (textFilter: string, searchFields: string[], query: 
     return query;
 }
 
+/**
+ * Method used to clean the mongo query before applying it.
+ * 
+ * @param {object} query original mongo query
+ * @returns {object} clean query.
+ */
 export const cleanMongoQuery = (query: object): object => {
     return _.omit(query, ['text', 'pagination', 'populate']);
 }

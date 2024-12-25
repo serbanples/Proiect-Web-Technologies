@@ -6,4 +6,11 @@ export const config: CONFIG_TYPES = {
     },
     db: 'mongodb://localhost:27017/webTech?authSource=admin',
     mongoQueryLimit: 500,
+    jwt_secret: 'cheie_secreta_nebuna',
+    cookieConfig: {
+        httpOnly: true,
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24, // one day
+        sameSite: 'strict'
+    }
 }
