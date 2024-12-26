@@ -3,7 +3,8 @@ export const config: config_types = {
     routes: {
         loginRoute: '/auth/login',
         registerRoute: '/auth/register',
-        homeRoute: '/home',
+        homeRoute: '/dashboard/home',
+        dashboardRoute: '/dashboard',
         baseRoute: '/',
         authBaseRoute: '/auth'
     },
@@ -15,6 +16,7 @@ interface config_types {
         readonly loginRoute: string;
         readonly registerRoute: string;
         readonly homeRoute: string;
+        readonly dashboardRoute: string;
         readonly baseRoute: string;
         readonly authBaseRoute: string;
     };

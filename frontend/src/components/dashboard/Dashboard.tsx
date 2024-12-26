@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Dashboard.scss';
 import SidePanel from './SidePanel';
-import { Route, Routes} from 'react-router-dom';
-import Home from '../../pages/Home';
-import App from '../../App';
+import { Outlet } from 'react-router-dom';
+// import { Route, Routes} from 'react-router-dom';
+// import Home from '../../pages/Home';
+// import App from '../../App';
 
 
 const Dashboard: React.FC = () => {
@@ -19,12 +20,13 @@ const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
         <SidePanel isOpen={isSidePanelOpen} togglePanel={toggleSidePanel} />
       {/* Main Content (Page content can be injected here) */}
       <div className="main-content">
+        <Outlet />
         {/* <Router> */}
-            <Routes>
-                <Route path="/home" Component={Home} />
-                <Route path="/" Component={App} />
+            {/* <Routes> */}
+                {/* <Route path="/home" Component={Home} />
+                <Route path="/" Component={App} /> */}
             {/* Add more routes as needed */}
-          </Routes>
+          {/* </Routes> */}
         {/* </Router> */}
       </div>
     </div>

@@ -49,6 +49,8 @@ export class AuthLib {
         if(form.password !== form.confirmPassword)
             throw new BadRequest('Passwords dont match!');
 
+        console.log('aici')
+
         const user: UserInfo = {
             name: form.name,
             password: await this.hashPassword(form.password),
@@ -58,6 +60,7 @@ export class AuthLib {
 
         return this.userModel.findOne({ email: user.email })
             .then((foundUser) => {
+                console.log(foundUser);
                 if(!_.isNil(foundUser))
                     throw new BadRequest('User already exists');
                 return this.userModel.create(user as UserModelType);

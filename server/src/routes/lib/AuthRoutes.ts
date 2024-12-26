@@ -54,6 +54,7 @@ export class AuthRoutes {
      * @returns {Promise<void>} handles register requests
      */
     private async register(req: Request, res: Response, next?: NextFunction): Promise<void> {
+        console.log(req.body);
         return this.middleware.register(req)
             .then((result) => sendValidResponse({ response: result }, res, 201))
             .catch((error) => sendErrorResponse(error, res))
