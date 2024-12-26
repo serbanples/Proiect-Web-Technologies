@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import GenericForm from '../components/form/Form'
-import { ButtonType, FormField } from '../components/types';
+import GenericForm from '../../components/form/Form'
+import { ButtonType, FormField } from '../../components/types';
 import './Login.scss';
-import { loginRequest } from '../services/authService';
-import { useAuth } from '../contexts/AuthContext';
-import { config } from '../config/config';
+import { loginRequest } from '../../services/authService';
+import { useAuth } from '../../contexts/AuthContext';
+import { config } from '../../config/config';
 
 const Login = () => {
   const navigate = useNavigate();

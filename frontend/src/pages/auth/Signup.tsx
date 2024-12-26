@@ -1,9 +1,9 @@
-import GenericForm from '../components/form/Form'
-import { ButtonType, FormField } from '../components/types';
+import GenericForm from '../../components/form/Form'
+import { ButtonType, FormField } from '../../components/types';
 import { useNavigate } from 'react-router-dom';
-import { registerRequest } from '../services/authService';
-import { config } from '../config/config';
-import { useAuth } from '../contexts/AuthContext';
+import { registerRequest } from '../../services/authService';
+import { config } from '../../config/config';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -41,6 +41,7 @@ const Signup = () => {
   return (
     <div className=".full-screen login-page">
       <div className="login-form-container">
+        bubu
         <GenericForm
           title={title}
           fields={fields}
