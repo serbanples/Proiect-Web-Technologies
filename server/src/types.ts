@@ -34,7 +34,7 @@ export interface RegisterRequest {
     name: string;
     email: string;
     password: string;
-    confirmedPassword: string;
+    confirmPassword: string;
 }
 
 // Utils

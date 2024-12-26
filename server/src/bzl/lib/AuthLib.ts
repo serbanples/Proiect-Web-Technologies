@@ -46,7 +46,7 @@ export class AuthLib {
      * @returns {UserModelType} registered user data.
      */
     async register(form: RegisterRequest): Promise<UserModelType> {
-        if(form.password !== form.confirmedPassword)
+        if(form.password !== form.confirmPassword)
             throw new BadRequest('Passwords dont match!');
 
         const user: UserInfo = {
@@ -64,6 +64,12 @@ export class AuthLib {
             })
     }
 
+    /**
+     * Method used in order to decode the jwt token.
+     * 
+     * @param {string} token jwt token.
+     * @returns {UserContext} details about the user.
+     */
     verifyToken(token: string): UserContext {
         try{
             const payload: any = jwt.verify(token, config.jwt_secret);
