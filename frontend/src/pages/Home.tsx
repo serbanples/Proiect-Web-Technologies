@@ -1,12 +1,12 @@
 import React from 'react';
 import './Home.scss';
-import MenuBar from '../components/MenuBar';
+// import Dashboard from '../components/dashboard/Dashboard';
 
 const Home: React.FC = () => {
   return (
     <div className="home-page">
       {/* Menu bar and side panel components */}
-      <MenuBar/>
+    {/* <Dashboard /> */}
       <div className="content-container">
         <div className="project-table-container">
           <table className="project-table">

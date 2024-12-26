@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ButtonType, FormField } from './types';
+import { ButtonType, FormField } from '../types';
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';

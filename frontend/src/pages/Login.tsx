@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import GenericForm from '../components/Form'
+import GenericForm from '../components/form/Form'
 import { ButtonType, FormField } from '../components/types';
 import './Login.scss';
 

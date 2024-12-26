@@ -1,0 +1,33 @@
+.dashboard {
+    display: flex;
+    transition: margin-left 0.3s ease; /* Smooth transition for main content shift */
+    position: relative; /* Ensure that margin-left works properly */
+  }
+  
+  .side-panel {
+    width: 0; /* Initially, the side panel has no width */
+    height: 100vh; /* Full height */
+    transition: width 0.3s ease; /* Smooth transition for side panel opening */
+    background-color: #333; /* Background color */
+    position: fixed; /* Fixed to the left */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+  }
+  
+  .side-panel.open {
+    width: 250px; /* Full width when open */
+  }
+  
+  .main-content {
+    flex: 1; /* Takes up remaining space */
+    transition: margin-left 0.3s ease; /* Smooth transition for shifting content */
+    margin-left: 70px;
+    padding: 20px;
+  }
+  
+  .dashboard.side-panel-open .main-content {
+    margin-left: 250px; /* Shifting the main content to the right when panel is open */
+  }
+  
