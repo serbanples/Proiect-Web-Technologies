@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+.project-box {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      gap: 12px;
+    }
+  
+    .project-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+  
+    .project-tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      width: fit-content;
+      
+      &.website-redesign {
+        background-color: #e3f2fd;
+        color: #1976d2;
+        border: 1px solid #bbdefb;
+      }
+      
+      &.mobile-app-development {
+        background-color: #fff3e0;
+        color: #f57c00;
+        border: 1px solid #ffe0b2;
+      }
+    }
+  
+    .bottom-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+  
+    .assignee {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #666;
+  
+      img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  
+    .ticket-info {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #666;
+      
+      .priority-level {
+        display: flex;
+        align-items: center;
+        
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      
+      .ticket-number {
+        color: #888;
+      }
+    }
+  }

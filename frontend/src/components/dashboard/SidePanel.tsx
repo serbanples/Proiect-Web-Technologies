@@ -12,9 +12,10 @@ const SidePanel: React.FC<SidePanelProps> = ({ isOpen, togglePanel }) => {
       <div className="menu-bar">
         {/* Burger Icon to toggle the side panel */}
         <div className="burger" onClick={togglePanel}>
-          <span className={isOpen ? 'open' : ''}></span>
-          <span className={isOpen ? 'open' : ''}></span>
-          <span className={isOpen ? 'open' : ''}></span>
+          <input type="checkbox" id="burger-toggle" checked={isOpen} readOnly />
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
 
