@@ -4,6 +4,7 @@ import * as cors from 'cors';
 import { Factory } from "./factory";
 import { config } from "./config/config";
 import * as Bluebird from 'bluebird';
+import path from 'path';
 
 export class Server {
     private app: Application = express();
@@ -24,6 +25,11 @@ export class Server {
         this.app.use(cookieParser());
         this.app.use(cors.default());
         this.app.use(this.factory.getRoutes().getRouter());
+
+        this.app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+        this.app.get('*', (req, res) => {
+            res.sendFile(path.join(__dirname, '../../frontend/dist', 'index.html'))
+        })
     }
 
     /**
@@ -31,7 +37,7 @@ export class Server {
      * 
      * @returns {void} starts the server
      */
-    private start(): void {
+    public start(): void {
         this.app.listen(config.express.PORT, () => {
             console.log(`Server started listentning on port ${config.express.PORT}`)
         })

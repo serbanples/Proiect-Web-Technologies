@@ -21,18 +21,18 @@ services:
     volumes:
       - ./backend:/usr/src/app
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: frontend
-    restart: always
-    ports:
-      - "5173:80"
-    depends_on:
-      - server
-    volumes:
-      - ./frontend:/usr/src/app
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: frontend
+  #   restart: always
+  #   ports:
+  #     - "5173:80"
+  #   depends_on:
+  #     - server
+  #   volumes:
+  #     - ./frontend:/usr/src/app
 
 volumes:
   mongodb_data:
