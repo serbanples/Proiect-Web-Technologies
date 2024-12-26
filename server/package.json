@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "tsc -p .",
+    "build:watch": "nodemon --watch src --ext ts --exec npm run build",
     "test": "jest",
     "start:server": "node ./bin/server.js",
     "generate:schemas": "npm i zod && ts-schema-generator --routes-json ~/Work/faculta/web/Proiect-Web-Technologies/server/src/config/schemas.json --output-dir ~/Work/faculta/web/Proiect-Web-Technologies/server/src/schemas --library zod"
@@ -47,6 +48,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.14"
+    "@types/jest": "^29.5.14",
+    "nodemon": "^3.1.9"
   }
 }
