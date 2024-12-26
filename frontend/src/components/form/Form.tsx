@@ -10,15 +10,15 @@ type GenericFormProps = {
   title: string;
   fields: FormField[];
   buttons: ButtonType[];
-  onSubmit: (formData: Record<string, string | number>) => void;
+  onSubmit: (formData: Record<string, string>) => void;
 };
 
 const GenericForm: React.FC<GenericFormProps> = ({ title, fields, buttons, onSubmit }) => {
-  const [formData, setFormData] = useState<Record<string, string | number>>(
+  const [formData, setFormData] = useState<Record<string, string>>(
     fields.reduce((acc, field) => {
       acc[field.name] = '';
       return acc;
-    }, {} as Record<string, string | number>)
+    }, {} as Record<string, string>)
   );
 
   const [passwordVisibility, setPasswordVisibility] = useState<Record<string, boolean>>(

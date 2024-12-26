@@ -33,8 +33,13 @@ export const loginRequest = async (loginFormData: Record<string, string>) => {
  */
 export const registerRequest = async (registerFormData: Record<string, string>) => {
     return POST_REQUEST(`${config.baseUrl}/auth/register`, registerFormData)
-        .then(() => {
-            loginRequest({ email: registerFormData.email, password: registerFormData.password });
+        .then(async (response) => {
+            if(response.status === 200) {
+                return loginRequest({ email: registerFormData.email, password: registerFormData.password });
+            } else {
+                const error = await response.json();
+                throw new Error(error.error)
+            }
         });
 }
 
