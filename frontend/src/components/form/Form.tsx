@@ -5,7 +5,6 @@ import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
 import './Form.scss';
 
-
 type GenericFormProps = {
   title: string;
   fields: FormField[];

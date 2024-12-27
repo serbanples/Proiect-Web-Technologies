@@ -27,3 +27,10 @@ export type Project = {
   status: Status;
   dueDate: string;
 }
+
+export enum PriorityLevel {
+  low = "Low",
+  medium = "Medium",
+  high = "High",
+  critical = "Critical"
+}
