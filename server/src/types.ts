@@ -1,6 +1,15 @@
+import { Request } from "express";
+
 export interface UserContext {
     id: string;
     email: string;
+    role: UserRoleEnum;
+}
+
+export enum UserRoleEnum {
+    USER = 'user',
+    ADMIN = 'admin',
+    MASTER = 'master'
 }
 
 // QueryFilter
@@ -21,6 +30,27 @@ export interface ResourceWithPagination<T> {
         totalPages: number;
         totalCount: number;
     }
+}
+
+export interface UserDeleteFilter {
+    ids?: string[];
+}
+
+export interface UserBrowseFilter extends with_text_optional, with_populate_optional {
+    role?: UserRoleEnum;
+    pagination?: QueryPaginationFilter;
+}
+
+interface with_text_optional {
+    text?: string;
+}
+
+interface with_populate_optional {
+    populate?: boolean;
+}
+
+export interface UserDeleteResponse {
+    deleteCount: number;
 }
 
 // Requests
@@ -48,4 +78,9 @@ export interface UserInfo {
     password: string;
     email: string;
     createdAt: Date; 
+    role: UserRoleEnum;
+}
+
+export interface RequestWrapper extends Request { 
+    userContext?: UserContext;
 }

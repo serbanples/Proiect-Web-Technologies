@@ -1,0 +1,20 @@
+{
+    "user": {
+        "user": {
+            "delete": "false",
+            "browse": "true"
+        }
+    },
+    "admin": {
+        "user": {
+            "delete": "true",
+            "browse": "true"
+        }
+    },
+    "master": {
+        "user": {
+            "delete": "true",
+            "browse": "true"
+        }
+    }
+}

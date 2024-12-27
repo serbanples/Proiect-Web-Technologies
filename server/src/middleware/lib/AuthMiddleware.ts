@@ -33,7 +33,6 @@ export class AuthMiddleware {
         if(registerRequest.success === false) {
             throw new BadRequest('Invalid registration data.');
         }
-        console.log('aici')
 
         return authBzl.register(registerRequest.data);
     }

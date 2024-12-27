@@ -1,16 +1,17 @@
-import mongoose, { SchemaDefinitionProperty } from "mongoose";
-import { Abs } from "./Abs";
+import mongoose from "mongoose";
+import { AbstractModel } from "./AbstractModel";
 import { ModelNameEnum, PopulateOpts } from "../utils/types";
 import { UserModelType } from "../types";
-import { toBoolean, transformFn } from "../utils/utils";
+import { transformFn } from "../utils/utils";
 import { logger } from "../../logger";
 
-export class UserModel extends Abs<UserModelType> {
+export class UserModel extends AbstractModel<UserModelType> {
     protected SchemaDef: mongoose.SchemaDefinition = {
         name: { type: String, required: true, unique: false },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true, select: false },
-        createdAt: { type: Date }
+        createdAt: { type: Date },
+        role: { type: String, required: true }
     };
 
     protected SchemaOptions: mongoose.SchemaOptions = {
@@ -19,7 +20,7 @@ export class UserModel extends Abs<UserModelType> {
         toJSON: { getters: true, transform: transformFn }
     }
 
-    protected textSearchFields: string[] = ['email, name'];
+    protected textSearchFields: string[] = ['email', 'name'];
 
     protected populateOptions: PopulateOpts = [];
 

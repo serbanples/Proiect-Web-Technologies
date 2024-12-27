@@ -1,6 +1,6 @@
 import { UserModel } from "../../models/lib/UserModel";
 import * as jwt from 'jsonwebtoken';
-import { LoginRequest, RegisterRequest, UserContext, UserInfo } from "../../types";
+import { LoginRequest, RegisterRequest, UserContext, UserInfo, UserRoleEnum } from "../../types";
 import * as bcrypt from 'bcryptjs';
 import _ from "lodash";
 import { UserModelType } from "../../models/types";
@@ -49,18 +49,17 @@ export class AuthLib {
         if(form.password !== form.confirmPassword)
             throw new BadRequest('Passwords dont match!');
 
-        console.log('aici')
 
         const user: UserInfo = {
             name: form.name,
             password: await this.hashPassword(form.password),
             email: form.email,
             createdAt: new Date(),
+            role: UserRoleEnum.USER
         };
 
         return this.userModel.findOne({ email: user.email })
             .then((foundUser) => {
-                console.log(foundUser);
                 if(!_.isNil(foundUser))
                     throw new BadRequest('User already exists');
                 return this.userModel.create(user as UserModelType);
@@ -79,7 +78,8 @@ export class AuthLib {
     
             const context: UserContext = {
                 id: payload.id,
-                email: payload.email
+                email: payload.email,
+                role: payload.role
             }
     
             return context;
@@ -129,7 +129,7 @@ export class AuthLib {
      * @returns {string} jwt token.
      */
     private generateToken(user: UserModelType): string {
-        return jwt.sign({ id: user.id, email: user.email }, config.jwt_secret, { expiresIn: '24h' });
+        return jwt.sign({ id: user.id, email: user.email, role: user.role }, config.jwt_secret, { expiresIn: '24h' });
     }
 
 }

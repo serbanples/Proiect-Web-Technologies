@@ -84,7 +84,7 @@ export const validatePaginationFilter = (originalPagination: QueryPaginationFilt
  */
 export const addTextQuery = (textFilter: string, searchFields: string[], query: object): object => {
     const text = textFilter || '';
-    query = _.omit(['text']);
+    query = _.omit(query, ['text']);
     if(!_.isNil(text) && !_.isEmpty(text) && !_.isEmpty(searchFields)) {
         const formattedText = quote(text);
         try {

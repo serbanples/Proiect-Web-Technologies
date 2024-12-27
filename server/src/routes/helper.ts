@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { BadRequest, NotFound, Unauthorized } from "../errors/CustomErrors";
+import { NextFunction, Request, Response } from "express";
+import { BadRequest, NotAvailable, NotFound, Unauthorized } from "../errors/CustomErrors";
 import { config } from "../config/config";
 import { decodeToken } from "../bzl/coreBzl/auth";
-import { UserContext } from "../types";
+import { RequestWrapper, UserContext, UserRoleEnum } from "../types";
 
 /**
  * Method used to send error responses.
@@ -22,6 +22,10 @@ export const sendErrorResponse = (error: any, res: Response): void => {
     }
     else if(error instanceof Unauthorized) {
         res.statusCode = 401;
+        res.send({ error: error.message });
+    } 
+    else if(error instanceof NotAvailable) {
+        res.statusCode = 503;
         res.send({ error: error.message });
     } 
     else {
@@ -77,4 +81,26 @@ export const clearCookie = (res: Response): void => {
         sameSite: 'strict',
         expires: new Date(0),
     });
+}
+
+export const verifyToken = (req: RequestWrapper, res: Response, next: NextFunction): void => {
+    const token = req.cookies.token;
+    try {
+        const userContext = decodeToken(token);
+        req.userContext = userContext;
+        next();
+    } catch (error) {
+        sendErrorResponse(new Unauthorized('Not authorized'), res);
+        return;
+    }
+}
+
+export const getUserContext = (req: RequestWrapper): UserContext => {
+    const usercontext: UserContext = req.userContext || {
+        id: '0',
+        email: 'invalid',
+        role: UserRoleEnum.USER
+    }
+
+    return usercontext;
 }

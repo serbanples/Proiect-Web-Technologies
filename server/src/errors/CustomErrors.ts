@@ -15,3 +15,9 @@ export class Unauthorized extends Error {
         super(message);
     }
 }
+
+export class NotAvailable extends Error {
+    constructor(message: any) {
+        super(message);
+    }
+}

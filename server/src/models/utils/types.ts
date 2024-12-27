@@ -6,6 +6,8 @@ export type PopulateOpts = {
 
 export enum ModelNameEnum {
     USER = 'User',
+    PROJECT = 'Project',
+    TEAM = 'Team',
 }
 
 export interface PaginationFilter {
