@@ -1,27 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
-.project-box {
+.task-box {
     font-family: 'Roboto Condensed', sans-serif;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 16px;
     margin: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    min-height: 140px;
+    width: 300px;
+    min-height: 90px;
     display: flex;
     flex-direction: column;
     position: relative;
     
-    .project-content {
+    .task-content {
       display: flex;
       flex-direction: column;
       height: 100%;
-      gap: 12px;
+      gap: 5px;
     }
   
-    .project-title {
-      font-size: 14px;
+    .task-title {
+      font-size: 16px;
       font-weight: bold;
       color: #333;
       line-height: 1.4;
@@ -32,7 +32,7 @@
       display: inline-block;
       padding: 4px 8px;
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
       width: fit-content;
@@ -48,6 +48,12 @@
         color: #f57c00;
         border: 1px solid #ffe0b2;
       }
+
+      &.new-application {
+        background-color: #fbf0fe;
+        color: #cc1eef;
+        border: 1px solid #e3b6f4;
+      }
     }
   
     .bottom-info {
@@ -62,22 +68,29 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
+      font-size: 14px;
       color: #666;
-  
-      img {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
     }
+
+    .assignee-dropdown {
+      padding: 2px 4px;
+      font-size: 12px;
+      border: none;
+      background-color: #fff;
+      color: #666;
+      cursor: pointer;
+    
+      &:focus {
+        outline: none;
+        border-color: #202020;
+      }
+    }    
   
     .ticket-info {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 12px;
+      font-size: 14px;
       color: #666;
       
       .priority-level {
@@ -85,8 +98,8 @@
         align-items: center;
         
         svg {
-          width: 16px;
-          height: 16px;
+          width: 25px;
+          height: 25px;
         }
       }
       
