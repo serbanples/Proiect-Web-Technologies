@@ -1,15 +1,15 @@
 .dashboard {
     display: flex;
-    transition: margin-left 0.3s ease; /* Smooth transition for main content shift */
-    position: relative; /* Ensure that margin-left works properly */
+    transition: margin-left 0.3s ease; 
+    position: relative; 
   }
   
   .side-panel {
-    width: 0; /* Initially, the side panel has no width */
-    height: 100vh; /* Full height */
-    transition: width 0.3s ease; /* Smooth transition for side panel opening */
-    background-color: #333; /* Background color */
-    position: fixed; /* Fixed to the left */
+    width: 0; 
+    height: 100vh; 
+    transition: width 0.3s ease; 
+    background-color: #333; 
+    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
@@ -17,17 +17,16 @@
   }
   
   .side-panel.open {
-    width: 250px; /* Full width when open */
+    width: 220px;
   }
   
   .main-content {
-    flex: 1; /* Takes up remaining space */
-    transition: margin-left 0.3s ease; /* Smooth transition for shifting content */
+    flex: 1; 
+    transition: margin-left 0.3s ease; 
     margin-left: 70px;
-    padding: 20px;
   }
   
   .dashboard.side-panel-open .main-content {
-    margin-left: 250px; /* Shifting the main content to the right when panel is open */
+    margin-left: 220px; 
   }
   

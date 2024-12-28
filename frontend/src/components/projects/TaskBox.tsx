@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './TaskBox.scss';
 import { PriorityLevel } from '../types';
-import { chevronUp, chevronsUp, chevronDown } from 'react-icons-kit/feather';
-import {minus} from 'react-icons-kit/typicons/minus';
+import { prioritySettings } from '../../config/tasks';
 import Icon from 'react-icons-kit';
+import Popup from './Popup';
 
 type TaskBoxProps = {
   title: string;
@@ -12,17 +12,12 @@ type TaskBoxProps = {
   project: string;
   priorityLevel: PriorityLevel;
   assigneeList: string[];
+  description: string;
 }
 
-const prioritySettings = {
-  [PriorityLevel.low]: { icon: chevronDown, color: '#28a745' }, // Green for Low
-  [PriorityLevel.medium]: { icon: minus, color: '#ffc107' }, // Yellow for Medium
-  [PriorityLevel.high]: { icon: chevronUp,  color: '#e67e22' }, // Orange for High
-  [PriorityLevel.critical]: { icon: chevronsUp, color:'#d9534f' } // Red for Critical
-};
-
-const TaskBox: React.FC<TaskBoxProps> = ({ title, ticketNumber, assignee, project, priorityLevel, assigneeList }) => {
+const TaskBox: React.FC<TaskBoxProps> = ({ title, ticketNumber, assignee, project, priorityLevel, assigneeList, description }) => {
   const [currentAssignee, setCurrentAssignee] = useState<string>(assignee || 'Unassigned');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleAssigneeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCurrentAssignee(event.target.value);
@@ -31,7 +26,8 @@ const TaskBox: React.FC<TaskBoxProps> = ({ title, ticketNumber, assignee, projec
   const projectClass = project.toLowerCase().replace(/\s+/g, '-');
 
   return (
-    <div className="task-box">
+    <>
+    <div className="task-box" onClick={() => setIsPopupOpen(true)}>
       <div className="task-content">
 
         <div className="task-title">{title}</div>
@@ -67,6 +63,21 @@ const TaskBox: React.FC<TaskBoxProps> = ({ title, ticketNumber, assignee, projec
         </div>
       </div>
     </div>
+
+    <Popup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        title={title}
+        ticketNumber={ticketNumber}
+        description={description}
+        project={project}
+        projectClass={projectClass}
+        priorityLevel={priorityLevel}        
+        assigneeList={assigneeList}
+        currentAssignee={currentAssignee}
+        onAssigneeChange={handleAssigneeChange} 
+        ></Popup>
+    </>
   );
 };
 

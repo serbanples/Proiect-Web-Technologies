@@ -1,50 +1,85 @@
-/* HomePage.scss */
-.home-page {
-    display: flex;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+// /* HomePage.scss */
+// .home-page {
+//     display: flex;
+//     flex-direction: column;
+//   }
+  
+//   .content-container {
+//     display: flex;
+//     flex-direction: column;
+//     transition: transform 0.3s ease-in-out; /* Smooth transition for layout shift */
+//   }
+  
+//   .project-table-container {
+//     padding-right: 250px; /* Space for side panel */
+//     transition: padding-right 0.3s ease-in-out; /* Smooth transition for padding */
+//   }
+  
+//   .project-table {
+//     width: 100%;
+//     border-collapse: collapse;
+//   }
+  
+//   .project-table th,
+//   .project-table td {
+//     padding: 12px;
+//     text-align: left;
+//     border-bottom: 1px solid #ddd;
+//   }
+  
+//   .project-table th {
+//     background-color: #f4f4f4;
+//   }
+  
+//   .project-table td {
+//     background-color: #fff;
+//   }
+  
+//   .project-table tr:hover {
+//     background-color: #f1f1f1;
+//   }
+  
+//   /* Adjust content container when side panel is open */
+//   .side-panel.open + .content-container {
+//     transform: translateX(250px); /* Shift content to the right when side panel opens */
+//   }
+  
+//   .side-panel.open + .content-container .project-table-container {
+//     padding-right: 0; /* Remove right padding to make room for side panel */
+//   }
+  
+.task-board {
+  font-family: 'Roboto Condensed', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  gap: clamp(6px, 1vw, 16px);
+  padding: clamp(6px, 2vw, 10px);
+  background-color: #f8f9fa;
+}
+
+.task-column {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: clamp(6px, 2vw, 10px);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.column-title {
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: bold;
+  margin-bottom: clamp(12px, 2vw, 16px);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .task-board {
     flex-direction: column;
   }
-  
-  .content-container {
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease-in-out; /* Smooth transition for layout shift */
-  }
-  
-  .project-table-container {
-    padding-right: 250px; /* Space for side panel */
-    transition: padding-right 0.3s ease-in-out; /* Smooth transition for padding */
-  }
-  
-  .project-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .project-table th,
-  .project-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .project-table th {
-    background-color: #f4f4f4;
-  }
-  
-  .project-table td {
-    background-color: #fff;
-  }
-  
-  .project-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Adjust content container when side panel is open */
-  .side-panel.open + .content-container {
-    transform: translateX(250px); /* Shift content to the right when side panel opens */
-  }
-  
-  .side-panel.open + .content-container .project-table-container {
-    padding-right: 0; /* Remove right padding to make room for side panel */
-  }
-  
+}

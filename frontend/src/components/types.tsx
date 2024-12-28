@@ -16,7 +16,7 @@ export type ButtonType = {
 export enum Status {
   ToDo = 'To Do',
   InProgress = 'In Progress',
-  QA = 'QA',
+  DevQA = 'Dev QA',
   Done = 'Done'
 }
 
@@ -34,3 +34,13 @@ export enum PriorityLevel {
   high = "High",
   critical = "Critical"
 }
+
+export type Task = {
+  description: string;
+  title: string;
+  ticketNumber: string;
+  assignee: string;
+  project: string;
+  priorityLevel: PriorityLevel;
+  status: 'To Do' | 'In Progress' | 'Dev QA' | 'Done';
+};
