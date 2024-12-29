@@ -3,18 +3,36 @@
         "user": {
             "delete": "false",
             "browse": "true"
+        },
+        "task": {
+            "create": "true",
+            "browse": "true",
+            "delete": "false",
+            "update": "true"
         }
     },
     "admin": {
         "user": {
             "delete": "true",
             "browse": "true"
+        },
+        "task": {
+            "create": "true",
+            "browse": "true",
+            "delete": "true",
+            "update": "true"
         }
     },
     "master": {
         "user": {
             "delete": "true",
             "browse": "true"
+        },
+        "task": {
+            "create": "true",
+            "browse": "true",
+            "delete": "true",
+            "update": "true"
         }
     }
 }

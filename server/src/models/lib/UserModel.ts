@@ -17,7 +17,7 @@ export class UserModel extends AbstractModel<UserModelType> {
     protected SchemaOptions: mongoose.SchemaOptions = {
         collection: 'users',
         toObject: { getters: true, transform: transformFn },
-        toJSON: { getters: true, transform: transformFn }
+        toJSON: { getters: true, transform: transformFn },
     }
 
     protected textSearchFields: string[] = ['email', 'name'];

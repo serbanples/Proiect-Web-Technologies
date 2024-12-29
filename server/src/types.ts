@@ -1,4 +1,5 @@
 import { Request } from "express";
+import { TaskPriorityEnum, TaskStatusEnum } from "./models/types";
 
 export interface UserContext {
     id: string;
@@ -37,7 +38,18 @@ export interface UserDeleteFilter {
 }
 
 export interface UserBrowseFilter extends with_text_optional, with_populate_optional {
+    _id?: string;
     role?: UserRoleEnum;
+    pagination?: QueryPaginationFilter;
+}
+
+export interface TaskBrowseFilter extends with_populate_optional, with_text_optional {
+    _id?: string;
+    project?: string;
+    createdBy?: string;
+    assignedTo?: string;
+    priority?: TaskPriorityEnum;
+    status?: TaskStatusEnum;
     pagination?: QueryPaginationFilter;
 }
 
@@ -67,6 +79,24 @@ export interface RegisterRequest {
     confirmPassword: string;
 }
 
+export interface TaskRequest {
+    name: string;
+    project: string;
+    dueDate: Date;
+    assignedTo?: string;
+    priority: TaskPriorityEnum;
+    status?: TaskStatusEnum;
+    description?: string;
+}
+
+export interface TaskUpdateRequest {
+    dueDate?: Date;
+    assignedTo?: string;
+    priority?: TaskPriorityEnum;
+    status?: TaskStatusEnum;
+    description?: string;
+}
+
 // Utils
 
 export interface AnyObject {
@@ -79,6 +109,19 @@ export interface UserInfo {
     email: string;
     createdAt: Date; 
     role: UserRoleEnum;
+}
+
+export interface TaskInfo {
+    name: string;
+    displayId: string;
+    project: string;
+    createdBy: string;
+    createdAt: Date;
+    dueDate: Date;
+    assignedTo?: string;
+    priority: TaskPriorityEnum;
+    status: TaskStatusEnum;
+    description?: string;
 }
 
 export interface RequestWrapper extends Request { 

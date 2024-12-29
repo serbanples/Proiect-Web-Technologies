@@ -6,6 +6,7 @@ export const deleteBodySchema = z.object({
 })
 
 export const browseBodySchema = z.object({
+    id: z.string().optional(),
     role: z.string().optional(),
     pagination: z.object({
         pageSize: z.number().optional(),

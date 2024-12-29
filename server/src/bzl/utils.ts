@@ -9,3 +9,7 @@ export const formatPaginationFilter = (pagination?: QueryPaginationFilter): Quer
         orderDir: 'asc'
     }
 }
+
+export const formatFilter = (filter: any) => {
+    
+}

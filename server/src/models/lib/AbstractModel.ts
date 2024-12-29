@@ -120,7 +120,7 @@ export abstract class AbstractModel<ModelType extends mongoose.Document> {
     async count(filter: object): Promise<number> {
         if(!this.Model) throw new Error('Setup method was not called!');
 
-        return this.Model.where({ $and: filter }).countDocuments().exec()
+        return this.Model.countDocuments(filter).exec()
             .catch(error => { logger.error(error); throw error; })
     }
 
@@ -139,6 +139,7 @@ export abstract class AbstractModel<ModelType extends mongoose.Document> {
         const text = _.get(query, 'text', '');
         const { fromItem, pageSize, orderBy, orderDir } = validatePaginationFilter(pagination);
         const mongoQuery = addTextQuery(text, this.textSearchFields, cleanMongoQuery(query));
+        console.log(mongoQuery);
         return Promise.all([
             this.Model.countDocuments(mongoQuery).exec(),
             this.Model.find(mongoQuery, projection).skip(fromItem).limit(pageSize).sort( { [orderBy]: orderDir === 'asc' ? 1 : -1 } ),
@@ -160,9 +161,10 @@ export abstract class AbstractModel<ModelType extends mongoose.Document> {
             .catch(error => { logger.error(error); throw error; })
     }
 
-    async create(object: ModelType): Promise<ModelType> {
+    async create(object: object): Promise<ModelType> {
         if(!this.Model) throw new Error('Setup method was not called!');
 
+        console.log(object);
         return this.Model.create(object)
             .then(response => response.toObject() as ModelType)
             .catch(error => { logger.error(error); throw error; })

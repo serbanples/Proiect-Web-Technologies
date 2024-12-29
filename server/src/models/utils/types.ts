@@ -8,6 +8,7 @@ export enum ModelNameEnum {
     USER = 'User',
     PROJECT = 'Project',
     TEAM = 'Team',
+    TASK = 'Task'
 }
 
 export interface PaginationFilter {
