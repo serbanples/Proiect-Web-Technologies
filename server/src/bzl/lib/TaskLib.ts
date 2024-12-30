@@ -20,7 +20,7 @@ export class TaskLib {
     }
 
     async deleteTask(taskIds: string[]): Promise<number> {
-        const filter = { ids: {
+        const filter = { _id: {
             $in: taskIds,
         }};
         
@@ -40,7 +40,8 @@ export class TaskLib {
             assignedTo: taskObject.assignedTo,
             priority: taskObject.priority,
             status: taskObject.status || TaskStatusEnum.NEW,
-            description: taskObject.description
+            description: taskObject.description,
+            percentageCompleted: 0,
         }
 
         return this.taskModel.create(savedTask).then();

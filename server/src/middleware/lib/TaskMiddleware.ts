@@ -22,6 +22,7 @@ export class TaskMiddleware {
 
     public async browse(req: RequestWrapper) {
         const usercontext = getUserContext(req);
+        console.log('req', req.body);
 
         const filter: TaskBrowseFilter = JSON.parse(JSON.stringify({
             _id: req.body.id,
@@ -51,5 +52,10 @@ export class TaskMiddleware {
         const taskObject: TaskUpdateRequest = JSON.parse(JSON.stringify(req.body.task));
 
         return task.updateTask(usercontext, taskId, taskObject);
+    }
+
+    public async getTaskStatuses(req: RequestWrapper) {
+        const usercontext = getUserContext(req);
+        return task.getTaskStatuses(usercontext);
     }
 }

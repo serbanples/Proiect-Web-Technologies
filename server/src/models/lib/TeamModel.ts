@@ -21,7 +21,11 @@ export class TeamModel extends AbstractModel<TeamModelType> {
 
     protected textSearchFields: string[] = [];
 
-    protected populateOptions: PopulateOpts = [];
+    protected populateOptions: PopulateOpts = [
+        { path: 'members', model: ModelNameEnum.USER, select: 'name email' },
+        { path: 'createdBy', model: ModelNameEnum.USER, select: 'name email' },
+        { path: 'projects', model: ModelNameEnum.PROJECT, select: 'name description' },
+    ];
 
     constructor(Mongoose: mongoose.Mongoose) {
         super(Mongoose, ModelNameEnum.TEAM);

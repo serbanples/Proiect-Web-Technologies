@@ -4,12 +4,14 @@ import { MiddlewareInstance } from "../middleware/MiddlewareInstance";
 import { UserRoutes } from "./lib/UserRoutes";
 import { TaskRoutes } from "./lib/TaskRoutes";
 import { ProjectRoutes } from "./lib/ProjectRoutes";
+import { TeamRoutes } from "./lib/TeamRoutes";
 
 export class RoutesInstance {
     public authRoutes: AuthRoutes;
     public userRoutes: UserRoutes;
     public taskRoutes: TaskRoutes;
     public projectRoutes: ProjectRoutes;
+    public teamRoutes: TeamRoutes;
     private middlewareInstance: MiddlewareInstance;
     private router: Router = Router();
 
@@ -19,6 +21,7 @@ export class RoutesInstance {
         this.userRoutes = new UserRoutes(this.middlewareInstance.userMiddleware);
         this.taskRoutes = new TaskRoutes(this.middlewareInstance.taskMiddleware);
         this.projectRoutes = new ProjectRoutes(this.middlewareInstance.projectMiddleware);
+        this.teamRoutes = new TeamRoutes(this.middlewareInstance.teamMiddleware);
         this.router.use('/api', this.initializeRoutes())
     }
 
@@ -37,7 +40,7 @@ export class RoutesInstance {
         router.use('/user', this.userRoutes.getRouter());
         router.use('/task', this.taskRoutes.getRouter());
         router.use('/project', this.projectRoutes.getRouter());
-
+        router.use('/team', this.teamRoutes.getRouter());
         return router;
     }
 }

@@ -1,13 +1,13 @@
 import { NextFunction, Response, Router } from "express";
 import { sendErrorResponse, sendValidResponse, verifyToken } from "../helper";
 import { RequestWrapper } from "../../types";
-import { ProjectMiddleware } from "../../middleware/lib/ProjectMiddleware";
+import { TeamMiddleware } from "../../middleware/lib/TeamMiddleware";
 
-export class ProjectRoutes {
+export class TeamRoutes {
     private router: Router = Router();
-    private middleware: ProjectMiddleware;
+    private middleware: TeamMiddleware;
 
-    constructor(middleware: ProjectMiddleware) {
+    constructor(middleware: TeamMiddleware) {
         this.middleware = middleware;
         this.initializeRoutes();
     }
@@ -61,5 +61,4 @@ export class ProjectRoutes {
             .then((response) => sendValidResponse(response, res, 200))
             .catch(error => sendErrorResponse(error, res));
     }
-
 }

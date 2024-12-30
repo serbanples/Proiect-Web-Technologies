@@ -15,7 +15,8 @@ export class TaskModel extends AbstractModel<TaskModelType> {
         assignedTo: { type: mongoose.Types.ObjectId },
         priority: { type: String, required: true },
         status: { type: String },
-        description: { type: String }
+        description: { type: String },
+        percentageCompleted: { type: Number, default: 0 },
     }
 
     protected SchemaOptions: mongoose.SchemaOptions = {
@@ -29,7 +30,7 @@ export class TaskModel extends AbstractModel<TaskModelType> {
     protected populateOptions: PopulateOpts = [
         { path: 'createdBy', model: ModelNameEnum.USER, select: 'name email' },
         { path: 'assignedTo', model: ModelNameEnum.USER, select: 'name email' },
-        { path: 'project', model: ModelNameEnum.PROJECT, select: 'name' }
+        { path: 'project', model: ModelNameEnum.PROJECT, select: 'name prefferedColor' }
     ];
 
     constructor(Mongoose: mongoose.Mongoose) {

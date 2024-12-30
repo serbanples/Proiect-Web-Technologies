@@ -34,7 +34,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             .then(async (response) => {
                 if(response.status === 200) {
                     const data = await response.json();
-                    setAuth({ loggedIn: true, user: { id: data.id, email: data.email }});
+                    setAuth({ loggedIn: true, user: { id: data.id, email: data.email, role: data.role }});
                 } else {
                     setAuth({ loggedIn: false, user: null });
                 }

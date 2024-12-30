@@ -1,3 +1,5 @@
+import { config } from "../config/config"
+
 /**
  * Method used to make post requests.
  * 
@@ -6,7 +8,7 @@
  * @returns {Promise<Response>} response.
  */
 export const POST_REQUEST = async (route: string, body: any): Promise<Response> => {
-    return fetch(route, {
+    return fetch(`${config.baseUrl}${route}`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -22,7 +24,7 @@ export const POST_REQUEST = async (route: string, body: any): Promise<Response> 
  * @returns {Response} response.
  */
 export const GET_REQUEST = async (route: string): Promise<Response> => {
-    return fetch(route, {
+    return fetch(`${config.baseUrl}${route}`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json'

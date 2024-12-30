@@ -26,6 +26,7 @@ export class TaskRoutes {
         this.router.post('/browse', verifyToken, this.browse.bind(this));
         this.router.post('/delete', verifyToken, this.delete.bind(this));
         this.router.post('/update', verifyToken, this.update.bind(this));
+        this.router.get('/statuses', verifyToken, this.getTaskStatuses.bind(this));
     }
 
     private async browse(req: RequestWrapper, res: Response, next?: NextFunction): Promise<void> {
@@ -58,6 +59,12 @@ export class TaskRoutes {
 
     private async update(req: RequestWrapper, res: Response, next?: NextFunction): Promise<void> {
         return this.middleware.update(req)
+            .then((response) => sendValidResponse(response, res, 200))
+            .catch(error => sendErrorResponse(error, res));
+    }
+
+    private async getTaskStatuses(req: RequestWrapper, res: Response, next?: NextFunction): Promise<void> {
+        return this.middleware.getTaskStatuses(req)
             .then((response) => sendValidResponse(response, res, 200))
             .catch(error => sendErrorResponse(error, res));
     }

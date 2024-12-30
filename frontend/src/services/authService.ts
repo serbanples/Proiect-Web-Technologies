@@ -1,4 +1,3 @@
-import { config } from "../config/config";
 import { UserContext } from "../types";
 import { GET_REQUEST, POST_REQUEST } from "./requests";
 
@@ -9,7 +8,7 @@ import { GET_REQUEST, POST_REQUEST } from "./requests";
  * @returns {Promise<void>} .
  */
 export const loginRequest = async (loginFormData: Record<string, string>) => {
-    return POST_REQUEST(`${config.baseUrl}/auth/login`, loginFormData)
+    return POST_REQUEST('/auth/login', loginFormData)
         .then(async (response) => {
             if(response.status === 200) {
                 return whoamiRequest().then(async (response) => {
@@ -32,7 +31,7 @@ export const loginRequest = async (loginFormData: Record<string, string>) => {
  * @returns {Promise<void>} .
  */
 export const registerRequest = async (registerFormData: Record<string, string>) => {
-    return POST_REQUEST(`${config.baseUrl}/auth/register`, registerFormData)
+    return POST_REQUEST('/auth/register', registerFormData)
         .then(async (response) => {
             if(response.status === 200) {
                 return loginRequest({ email: registerFormData.email, password: registerFormData.password });
@@ -44,5 +43,5 @@ export const registerRequest = async (registerFormData: Record<string, string>) 
 }
 
 export const whoamiRequest = async () => {
-    return GET_REQUEST(`${config.baseUrl}/auth/whoami`);
+    return GET_REQUEST('/auth/whoami');
 }

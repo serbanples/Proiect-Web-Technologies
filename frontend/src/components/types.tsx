@@ -29,18 +29,39 @@ export type Project = {
 }
 
 export enum PriorityLevel {
-  low = "Low",
-  medium = "Medium",
-  high = "High",
-  critical = "Critical"
+  Low = "low",
+  Medium = "medium",
+  High = "high",
+  Critical = "critical"
+}
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  createdAt: string;
 }
 
 export type Task = {
+  id: string,
+  name: string;
+  displayId: string;
   description: string;
-  title: string;
-  ticketNumber: string;
-  assignee: string;
-  project: string;
-  priorityLevel: PriorityLevel;
-  status: 'To Do' | 'In Progress' | 'Dev QA' | 'Done';
+  assignedTo: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  project: {
+    id: string;
+    name: string;
+    prefferedColor: string;
+  };
+  priority: PriorityLevel;
+  percentageCompleted: number;
+  createdAt: string;
+  createdBy: string;
+  dueDate: string;
+  status: 'To Do' | 'In Progress' | 'Dev QA' | 'Done' | 'New';
 };

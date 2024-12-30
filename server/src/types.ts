@@ -95,13 +95,58 @@ export interface TaskUpdateRequest {
     priority?: TaskPriorityEnum;
     status?: TaskStatusEnum;
     description?: string;
+    percentageCompleted?: number;
+}
+
+// PROJECT
+
+export interface ProjectRequest {
+    name: string;
+    description?: string;
+}
+
+export interface ProjectInfo {
+    name: string;
+    description?: string;
+    createdAt: Date;
+    createdBy: string;
+}
+
+export interface ProjectUpdateRequest {
+    name?: string;
+    description?: string;
+}
+
+export interface ProjectBrowseFilter extends with_text_optional, with_populate_optional {
+    _id?: string;
+    pagination?: QueryPaginationFilter;
+}
+
+// TEAM
+
+export interface TeamRequest {
+    name: string;
+    description?: string;
+}
+
+export interface TeamUpdateRequest {
+    name?: string;
+    description?: string;
+}
+
+export interface TeamBrowseFilter extends with_text_optional, with_populate_optional {
+    _id?: string;
+    pagination?: QueryPaginationFilter;
+}
+
+export interface TeamInfo {
+    name: string;
+    description?: string;
+    createdAt: Date;
+    createdBy: string;
 }
 
 // Utils
-
-export interface AnyObject {
-
-}
 
 export interface UserInfo {
     name: string;
@@ -122,6 +167,7 @@ export interface TaskInfo {
     priority: TaskPriorityEnum;
     status: TaskStatusEnum;
     description?: string;
+    percentageCompleted?: number;
 }
 
 export interface RequestWrapper extends Request { 

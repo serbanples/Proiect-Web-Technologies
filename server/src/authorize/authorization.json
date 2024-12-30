@@ -1,25 +1,51 @@
 {
     "user": {
         "user": {
-            "delete": "false",
-            "browse": "true"
+            "browse": "true",
+            "delete": "false"
         },
         "task": {
-            "create": "true",
             "browse": "true",
+            "create": "true",
             "delete": "false",
-            "update": "true"
+            "update": "true",
+            "statuses": "true"
+        },
+        "project": {
+            "browse": "true",
+            "create": "false",
+            "delete": "false",
+            "update": "false"
+        },
+        "team": {
+            "browse": "true",
+            "create": "false",
+            "delete": "false",
+            "update": "false"
         }
     },
     "admin": {
         "user": {
-            "delete": "true",
-            "browse": "true"
+            "browse": "true",
+            "delete": "false"
         },
         "task": {
             "create": "true",
             "browse": "true",
             "delete": "true",
+            "update": "true",
+            "statuses": "true"
+        },
+        "project": {
+            "create": "false",
+            "browse": "true",
+            "delete": "false",
+            "update": "true"
+        },
+        "team": {
+            "create": "false",
+            "browse": "true",
+            "delete": "false",
             "update": "true"
         }
     },
@@ -29,6 +55,19 @@
             "browse": "true"
         },
         "task": {
+            "create": "true",
+            "browse": "true",
+            "delete": "true",
+            "update": "true",
+            "statuses": "true"
+        },
+        "project": {
+            "create": "true",
+            "browse": "true",
+            "delete": "true",
+            "update": "true"
+        },
+        "team": {
             "create": "true",
             "browse": "true",
             "delete": "true",

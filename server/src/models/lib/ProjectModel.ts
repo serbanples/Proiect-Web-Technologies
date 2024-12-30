@@ -6,7 +6,11 @@ import { ModelNameEnum, PopulateOpts } from "../utils/types";
 
 export class ProjectModel extends AbstractModel<ProjectModelType>{
     protected SchemaDef: mongoose.SchemaDefinition = {
-        name: { type: String, required: true, unique: false }
+        name: { type: String, required: true, unique: false },
+        createdBy: { type: mongoose.Types.ObjectId, required: true, ref: ModelNameEnum.USER },
+        createdAt: { type: Date, required: true },
+        description: { type: String },
+        prefferedColor: { type: String, default: '#000000' }
     };
 
     protected SchemaOptions: mongoose.SchemaOptions = {
@@ -15,9 +19,11 @@ export class ProjectModel extends AbstractModel<ProjectModelType>{
         toJSON: { getters: true, transform: transformFn }
     }
 
-    protected textSearchFields: string[] = [];
+    protected textSearchFields: string[] = ['name'];
 
-    protected populateOptions: PopulateOpts = [];
+    protected populateOptions: PopulateOpts = [
+        { path: 'createdBy', model: ModelNameEnum.USER, select: 'name email' },
+    ];
 
     constructor(Mongoose: mongoose.Mongoose) {
         super(Mongoose, ModelNameEnum.PROJECT);

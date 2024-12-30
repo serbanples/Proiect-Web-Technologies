@@ -5,6 +5,7 @@ export const config: config_types = {
         registerRoute: '/auth/register',
         homeRoute: '/dashboard/home',
         dashboardRoute: '/dashboard',
+        myTasksRoute: '/dashboard/my-tasks',
         baseRoute: '/',
         authBaseRoute: '/auth'
     },
@@ -17,6 +18,7 @@ interface config_types {
         readonly registerRoute: string;
         readonly homeRoute: string;
         readonly dashboardRoute: string;
+        readonly myTasksRoute: string;
         readonly baseRoute: string;
         readonly authBaseRoute: string;
     };

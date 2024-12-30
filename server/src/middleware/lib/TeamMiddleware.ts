@@ -1,31 +1,31 @@
 import { getUserContext } from "../../routes/helper";
-import { ProjectBrowseFilter, ProjectRequest, ProjectUpdateRequest, RequestWrapper, TaskBrowseFilter, TaskRequest } from "../../types";
-import * as project from "../../bzl/coreBzl/project";
+import { RequestWrapper, TeamBrowseFilter, TeamRequest, TeamUpdateRequest } from "../../types";
+import * as team from "../../bzl/coreBzl/team";
 import _ from "lodash";
 
-export class ProjectMiddleware {
+export class TeamMiddleware {
     public async create(req: RequestWrapper) {
         const userContext = getUserContext(req);
 
-        const projectRequest: ProjectRequest = JSON.parse(JSON.stringify({
+        const teamRequest: TeamRequest = JSON.parse(JSON.stringify({
             name: req.body.name,
             description: req.body.description,
         }));
 
-        return project.create(userContext, projectRequest);  
+        return team.createTeam(userContext, teamRequest);  
     }
 
     public async browse(req: RequestWrapper) {
         const usercontext = getUserContext(req);
 
-        const filter: ProjectBrowseFilter = JSON.parse(JSON.stringify({
+        const filter: TeamBrowseFilter = JSON.parse(JSON.stringify({
             _id: req.body.id,
             pagination: req.body.pagination,
             text: req.body.text,
             populate: req.body.populate,
         }));
 
-        return project.browse(usercontext, filter);
+        return team.browseTeams(usercontext, filter);
     }
 
     public async delete(req: RequestWrapper) {
@@ -33,17 +33,17 @@ export class ProjectMiddleware {
 
         const ids: string[] = JSON.parse(JSON.stringify(req.body.ids));
 
-        return project._delete(usercontext, ids);
+        return team.deleteTeams(usercontext, ids);
     }
 
     public async update(req: RequestWrapper) {
         const usercontext = getUserContext(req);
         const id: string = JSON.parse(JSON.stringify(req.body.id));
-        const projectUpdate: ProjectUpdateRequest = JSON.parse(JSON.stringify({
+        const teamUpdate: TeamUpdateRequest = JSON.parse(JSON.stringify({
             name: req.body.name,
             description: req.body.description,
         }));
 
-        return project.update(usercontext, id, projectUpdate);
+        return team.updateTeam(usercontext, id, teamUpdate);
     }
 }

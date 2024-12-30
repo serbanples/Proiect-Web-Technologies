@@ -1,41 +1,41 @@
 import React, { useState } from 'react';
 import './TaskBox.scss';
-import { PriorityLevel } from '../types';
+import { Task } from '../types';
 import { prioritySettings } from '../../config/tasks';
 import Icon from 'react-icons-kit';
 import Popup from './Popup';
+import _ from 'lodash';
 
 type TaskBoxProps = {
-  title: string;
-  ticketNumber: string;
-  assignee: string;
-  project: string;
-  priorityLevel: PriorityLevel;
-  assigneeList: string[];
-  description: string;
+  task: Task;
+  // users?: User[];
+  canUpdate?: boolean;
+  onUpdate?: () => void;
 }
 
-const TaskBox: React.FC<TaskBoxProps> = ({ title, ticketNumber, assignee, project, priorityLevel, assigneeList, description }) => {
-  const [currentAssignee, setCurrentAssignee] = useState<string>(assignee || 'Unassigned');
+const TaskBox: React.FC<TaskBoxProps> = ({ task, canUpdate, onUpdate }) => {
+  const currentAssignee = task.assignedTo.name || 'Unassigned';
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleAssigneeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentAssignee(event.target.value);
-  };
-  
-  const projectClass = project.toLowerCase().replace(/\s+/g, '-');
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+    
+    if(_.isFunction(onUpdate)) {
+      onUpdate();
+    }
+  }
 
   return (
     <>
     <div className="task-box" onClick={() => setIsPopupOpen(true)}>
       <div className="task-content">
 
-        <div className="task-title">{title}</div>
-        <div className={`project-tag ${projectClass}`}>{project}</div>
+        <div className="task-title">{task.name}</div>
+        <div className={`project-tag`} style={{ color: task.project.prefferedColor }}>{task.project.name}</div>
 
         <div className="bottom-info">
             <div className="assignee">
-            <label htmlFor="assignee-select">Assigned to: </label>
+            {/* <label htmlFor="assignee-select">Assigned to: </label>
             <select
               id="assignee-select"
               value={currentAssignee}
@@ -48,17 +48,18 @@ const TaskBox: React.FC<TaskBoxProps> = ({ title, ticketNumber, assignee, projec
                   {assignee}
                 </option>
               ))}
-            </select>
+            </select> */}
+            Assigned to: {currentAssignee}
             </div>
 
             <div className="ticket-info">
               <div className="priority-level">
               <Icon 
-                icon={prioritySettings[priorityLevel].icon} 
-                style={{ color: prioritySettings[priorityLevel].color }}
+                icon={prioritySettings[task.priority].icon} 
+                style={{ color: prioritySettings[task.priority].color }}
               />
               </div>
-              <span className="ticket-number">{ticketNumber}</span>
+              <span className="ticket-number">{task.displayId}</span>
             </div>
         </div>
       </div>
@@ -66,16 +67,18 @@ const TaskBox: React.FC<TaskBoxProps> = ({ title, ticketNumber, assignee, projec
 
     <Popup 
         isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
-        title={title}
-        ticketNumber={ticketNumber}
-        description={description}
-        project={project}
-        projectClass={projectClass}
-        priorityLevel={priorityLevel}        
-        assigneeList={assigneeList}
-        currentAssignee={currentAssignee}
-        onAssigneeChange={handleAssigneeChange} 
+        onClose={handleClosePopup}
+        canUpdate={canUpdate}
+        // title={title}
+        // ticketNumber={ticketNumber}
+        // description={description}
+        // project={project}
+        // projectClass={projectClass}
+        // priorityLevel={priorityLevel}        
+        // assigneeList={assigneeList}
+        id={task.id}
+        // currentAssignee={currentAssignee}
+        // onAssigneeChange={handleAssigneeChange} 
         ></Popup>
     </>
   );

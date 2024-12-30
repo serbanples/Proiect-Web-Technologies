@@ -17,6 +17,7 @@ export interface TaskModelType extends ModelType {
     createdAt: Date;
     dueDate: Date;
     assignedTo: string;
+    percentageCompleted: number;
     priority: TaskPriorityEnum;
     status: TaskStatusEnum;
     description: string;
@@ -33,16 +34,21 @@ export enum TaskStatusEnum {
     IN_PROGRESS = 'inProgress',
     DONE = 'done',
     CLOSED = 'closed',
-    STANDBY = 'standby',
-    NEW = 'new',
+    DEVQA = 'devqa',
+    NEW = 'new', // maybe change to TO DO
 }
 
 export interface TeamModelType extends ModelType {
-
+    name: string;
+    description: string;
+    createdAt: Date;
+    updatedAt: Date;
+    createdBy: string;
 }
 
 export interface ProjectModelType extends ModelType {
     name: string;
+    prefferedColor: string;
 }
 
 export interface ModelType extends mongoose.Document {

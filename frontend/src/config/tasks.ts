@@ -5,7 +5,7 @@ export const tasks = [
   {
     taskTitle: 'Design Homepage',
     projectTitle: 'Website Redesign',
-    priorityLevel: PriorityLevel.low,
+    priorityLevel: PriorityLevel.Low,
     assignee: 'Dinescu Denisa',
     ticketNumber: "aaa-123",
     status: Status.InProgress,
@@ -14,16 +14,16 @@ export const tasks = [
   {
     taskTitle: 'Develop API',
     projectTitle: 'Mobile App Development',
-    priorityLevel: PriorityLevel.critical,
+    priorityLevel: PriorityLevel.Critical,
     assignee: 'Ples Serban',
     ticketNumber: "bbb-456",
-    status: Status.ToDo,
+    status: "New",
     description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 'Lorem ipsum dolor sit amet', comes from a line in section 1.10.32."
   },
   {
     taskTitle: 'Something',
     projectTitle: 'Website Redesign',
-    priorityLevel: PriorityLevel.high,
+    priorityLevel: PriorityLevel.High,
     assignee: 'Horoba Andreea',
     ticketNumber: "ccc-642",
     status: Status.DevQA,
@@ -32,7 +32,7 @@ export const tasks = [
   {
     taskTitle: 'Develop Extend functionality',
     projectTitle: 'Mobile App Development',
-    priorityLevel: PriorityLevel.medium,
+    priorityLevel: PriorityLevel.Medium,
     assignee: 'Dragos Alexandru',
     ticketNumber: "ddd-975",
     status: Status.InProgress,
@@ -41,7 +41,7 @@ export const tasks = [
   {
     taskTitle: 'Develop API',
     projectTitle: 'New Application',
-    priorityLevel: PriorityLevel.critical,
+    priorityLevel: PriorityLevel.Critical,
     assignee: 'Criznic Ana',
     ticketNumber: "eee-358",
     status: Status.Done,
@@ -52,8 +52,8 @@ export const tasks = [
 export const assigneeList = ['Dinescu Denisa', 'Ples Serban', 'Dragos Alexandru', 'Horoba Andreea', 'Criznic Ana'];
 
 export const prioritySettings = {
-  [PriorityLevel.low]: { icon: chevronDown, color: '#28a745' }, // Green for Low
-  [PriorityLevel.medium]: { icon: minus, color: '#ffc107' }, // Yellow for Medium
-  [PriorityLevel.high]: { icon: chevronUp,  color: '#e67e22' }, // Orange for High
-  [PriorityLevel.critical]: { icon: chevronsUp, color:'#d9534f' } // Red for Critical
+  [PriorityLevel.Low]: { icon: chevronDown, color: '#28a745' }, // Green for Low
+  [PriorityLevel.Medium]: { icon: minus, color: '#ffc107' }, // Yellow for Medium
+  [PriorityLevel.High]: { icon: chevronUp,  color: '#e67e22' }, // Orange for High
+  [PriorityLevel.Critical]: { icon: chevronsUp, color:'#d9534f' } // Red for Critical
 };

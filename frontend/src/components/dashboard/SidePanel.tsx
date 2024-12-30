@@ -1,5 +1,10 @@
 import React from 'react';
 import './SidePanel.scss';
+import { Link } from 'react-router-dom';
+import { config } from '../../config/config';
+import {tasks} from 'react-icons-kit/fa/tasks';
+import {home} from 'react-icons-kit/feather/home';
+import Icon from 'react-icons-kit';
 
 interface SidePanelProps {
   isOpen: boolean;
@@ -21,12 +26,14 @@ const SidePanel: React.FC<SidePanelProps> = ({ isOpen, togglePanel }) => {
 
       {/* Panel content */}
       <div className="side-icons">
-        {isOpen && (
-          <>
-            <span>Icon 1</span>
-            <span>Icon 2</span>
-          </>
-        )}
+        <Link to={config.routes.myTasksRoute}>
+          <Icon icon={tasks} size={24} />
+          { isOpen && <span>My Tasks</span> }
+        </Link>
+        <Link to={config.routes.homeRoute}>
+          <Icon icon={home} size={24} />
+          { isOpen && <span>Home</span> }  
+        </Link>
       </div>
     </div>
   );
