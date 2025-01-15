@@ -44,11 +44,16 @@ export interface TeamModelType extends ModelType {
     createdAt: Date;
     updatedAt: Date;
     createdBy: string;
+    members: string[];
 }
 
 export interface ProjectModelType extends ModelType {
     name: string;
     prefferedColor: string;
+    createdBy: string;
+    createdAt: Date;
+    description: string;
+    team: string;
 }
 
 export interface ModelType extends mongoose.Document {

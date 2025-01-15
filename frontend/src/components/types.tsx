@@ -1,3 +1,5 @@
+import { TaskStatusEnum } from "../services/serviceTypes";
+
 export type FormField = {
     name: string;
     label: string;
@@ -63,5 +65,5 @@ export type Task = {
   createdAt: string;
   createdBy: string;
   dueDate: string;
-  status: 'To Do' | 'In Progress' | 'Dev QA' | 'Done' | 'New';
+  status: TaskStatusEnum;
 };

@@ -17,9 +17,13 @@ type DropdownProps = {
 
 const Dropdown: React.FC<DropdownProps> = ({ defaultOption, options, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(defaultOption);
+
+  console.log('selectedOption', selectedOption);
 
   const handleOptionClick = (option: DropdownOption) => {
     if (option.disabled) return;
+    setSelectedOption(option);
     onChange(option);
     setIsOpen(false);
   }
@@ -30,7 +34,7 @@ const Dropdown: React.FC<DropdownProps> = ({ defaultOption, options, onChange })
         className="dropdown-button"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {defaultOption.label}
+        {selectedOption.label}
         <Icon icon={isOpen ? chevronUp : chevronDown} className="dropdown-button-icon" />
       </div>
       {isOpen && (

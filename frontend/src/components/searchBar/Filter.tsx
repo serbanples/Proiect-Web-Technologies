@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Icon } from 'react-icons-kit';
 import { chevronUp, chevronDown } from 'react-icons-kit/feather';
 
@@ -18,6 +18,20 @@ type FilterProps = {
 const Filter: React.FC<FilterProps> = ({ options, selectedOption, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSelectedOption, setCurrentSelectedOption] = useState(selectedOption);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleOptionClick = (option: DropdownOption) => {
     if (option.disabled) return;
@@ -27,7 +41,7 @@ const Filter: React.FC<FilterProps> = ({ options, selectedOption, onChange }) =>
   }
   
   return (
-    <div className="dropdown-container">
+    <div className="dropdown-container" ref={dropdownRef}>
       <div 
         className="dropdown-button"
         onClick={() => setIsOpen(!isOpen)}

@@ -1,0 +1,72 @@
+[
+    {
+        "name": "master",
+        "password": "master",
+        "email": "master@mail.com",
+        "createdAt": "2024-04-29T12:46:52.298243",
+        "role": "master"
+    },
+    {
+        "name": "Developer 1",
+        "password": "developer",
+        "email": "dev1@mail.com",
+        "createdAt": "2024-09-04T12:46:52.298274",
+        "role": "user"
+    },
+    {
+        "name": "Developer 2",
+        "password": "developer",
+        "email": "dev2@mail.com",
+        "createdAt": "2024-07-13T12:46:52.298281",
+        "role": "user"
+    },
+    {
+        "name": "Developer 3",
+        "password": "developer",
+        "email": "dev3@mail.com",
+        "createdAt": "2024-07-01T12:46:52.298287",
+        "role": "user"
+    },
+    {
+        "name": "QA 1",
+        "password": "qa",
+        "email": "qa1@mail.com",
+        "createdAt": "2024-09-07T12:46:52.298292",
+        "role": "user"
+    },
+    {
+        "name": "qa2",
+        "password": "qa",
+        "email": "qa2@mail.com",
+        "createdAt": "2024-07-19T12:46:52.298298",
+        "role": "user"
+    },
+    {
+        "name": "Developer 4",
+        "password": "developer",
+        "email": "dev4@mail.com",
+        "createdAt": "2024-06-03T12:46:52.298303",
+        "role": "user"
+    },
+    {
+        "name": "Developer 5",
+        "password": "developer",
+        "email": "dev5@mail.com",
+        "createdAt": "2024-08-30T12:46:52.298309",
+        "role": "user"
+    },
+    {
+        "name": "Admin 1",
+        "password": "admin",
+        "email": "admin1@mail.com",
+        "createdAt": "2024-02-18T12:46:52.298320",
+        "role": "admin"
+    },
+    {
+        "name": "Admin 2",
+        "password": "admin",
+        "email": "admin2@mail.com",
+        "createdAt": "2024-04-13T12:46:52.298326",
+        "role": "admin"
+    }
+]

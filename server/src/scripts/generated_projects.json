@@ -1,0 +1,27 @@
+[
+    {
+      "name": "Client Project",
+      "createdBy": "6786641714efeef029bf3732",
+      "createdAt": "2024-01-29T12:00:00Z",
+      "description": "Main project for all client side part of applications",
+      "prefferedColor": "#FF5733",
+      "team": "6787529965750b4aa41f2fee"
+    },
+    {
+      "name": "Business Logic Project",
+      "createdBy": "6786641714efeef029bf3732",
+      "createdAt": "2024-01-10T15:30:00Z",
+      "description": "Main project for all business logic side part of applications",
+      "prefferedColor": "#4287f5",
+      "team": "6787529965750b4aa41f2ff2"
+    },
+    {
+      "name": "Quality Assessment",
+      "createdBy": "6786641714efeef029bf3732",
+      "createdAt": "2025-01-12T09:00:00Z",
+      "description": "Main project for quality assessment teams.",
+      "prefferedColor": "#000000",
+      "team": "6787529965750b4aa41f2feb"
+    }
+  ]
+  

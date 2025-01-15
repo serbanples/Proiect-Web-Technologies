@@ -5,10 +5,13 @@ import TaskBox from '../../../components/projects/TaskBox';
 import { browseTasksRequest, getTaskStatusesRequest } from '../../../services/taskService';
 import { Task } from '../../../components/types';
 import { TaskStatusEnum } from '../../../services/serviceTypes';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const Home: React.FC = () => {  
   const [statuses, setStatuses] = useState<{ value: TaskStatusEnum, label: string }[]>([]);
   const [taskGroups, setTaskGroups] = useState<Record<string, Task[]>>({});
+
+  const { auth } = useAuth();
 
   useEffect(() => {
     getTaskStatusesRequest()
@@ -47,15 +50,7 @@ const Home: React.FC = () => {
           {taskGroups[status.value]?.map((task) => (
             <TaskBox
               task={task}
-              // key={task.id}
-              // id={task.id}
-              // title={task.name}
-              // project={task.project.name}
-              // priorityLevel={task.priority}
-              // assignee={task.assignedTo.name}
-              // ticketNumber={task.displayId}
-              // assigneeList={assigneeList}
-              // description={task.description}
+              canUpdate={auth.user?.role === 'master' || auth.user?.role === 'admin' ? true : false }
             />
           ))}
         </div>

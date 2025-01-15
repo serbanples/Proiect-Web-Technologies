@@ -8,7 +8,8 @@
     "build:watch": "nodemon --watch src --ext ts --exec npm run build",
     "test": "jest",
     "start:server": "node ./bin/server.js",
-    "generate:schemas": "npm i zod && ts-schema-generator --routes-json ~/Work/faculta/web/Proiect-Web-Technologies/server/src/config/schemas.json --output-dir ~/Work/faculta/web/Proiect-Web-Technologies/server/src/schemas --library zod"
+    "generate:schemas": "npm i zod && ts-schema-generator --routes-json ~/Work/faculta/web/Proiect-Web-Technologies/server/src/config/schemas.json --output-dir ~/Work/faculta/web/Proiect-Web-Technologies/server/src/schemas --library zod",
+    "initdb": "node ./dist/scripts/initdb.js"
   },
   "author": "",
   "license": "ISC",

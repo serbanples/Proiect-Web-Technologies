@@ -10,7 +10,8 @@ export class ProjectModel extends AbstractModel<ProjectModelType>{
         createdBy: { type: mongoose.Types.ObjectId, required: true, ref: ModelNameEnum.USER },
         createdAt: { type: Date, required: true },
         description: { type: String },
-        prefferedColor: { type: String, default: '#000000' }
+        prefferedColor: { type: String, default: '#000000' },
+        team: { type: mongoose.Types.ObjectId, ref: ModelNameEnum.TEAM }
     };
 
     protected SchemaOptions: mongoose.SchemaOptions = {

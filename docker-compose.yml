@@ -5,7 +5,7 @@ services:
     image: mongo:6.0
     container_name: mongodb_web_tech
     ports: 
-      - "27017:27017"
+      - "37017:27017"
     volumes: 
       - mongodb_data:/data/db
 

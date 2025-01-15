@@ -3,7 +3,7 @@ export const config: config_types = {
     routes: {
         loginRoute: '/auth/login',
         registerRoute: '/auth/register',
-        homeRoute: '/dashboard/home',
+        allTasksRoute: '/dashboard/all-tasks',
         dashboardRoute: '/dashboard',
         myTasksRoute: '/dashboard/my-tasks',
         baseRoute: '/',
@@ -16,7 +16,7 @@ interface config_types {
     readonly routes: {
         readonly loginRoute: string;
         readonly registerRoute: string;
-        readonly homeRoute: string;
+        readonly allTasksRoute: string;
         readonly dashboardRoute: string;
         readonly myTasksRoute: string;
         readonly baseRoute: string;

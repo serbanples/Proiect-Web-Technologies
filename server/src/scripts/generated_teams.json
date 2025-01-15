@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Quality Assessment Team",
+        "description": "The quality assessment team tests the developed feature before going into production",
+        "createdAt": "2024-09-05T09:46:52.298Z",
+        "updatedAt": "2024-09-07T09:46:52.298Z",
+        "createdBy": "6786641714efeef029bf3732",
+        "members": ["6786641814efeef029bf3741", "6786641814efeef029bf3743"]
+    },
+    {
+        "name": "Frontend Development Team",
+        "description": "The frontend development team develops the interface for the projects",
+        "createdAt": "2024-09-05T09:46:52.298Z",
+        "updatedAt": "2024-09-07T09:46:52.298Z",
+        "createdBy": "6786641714efeef029bf3732",
+        "members": ["6786641714efeef029bf3739", "6786641714efeef029bf373c", "6786641814efeef029bf3749"]
+    },
+    {
+        "name": "Backend Development Team",
+        "description": "The backend development team develops the business logic for the projecf",
+        "createdAt": "2024-09-05T09:46:52.298Z",
+        "updatedAt": "2024-09-07T09:46:52.298Z",
+        "createdBy": "6786641714efeef029bf3732",
+        "members": ["6786641814efeef029bf373f", "6786641814efeef029bf3747", "6786641814efeef029bf3741", "6786641814efeef029bf374b"]
+    }
+]

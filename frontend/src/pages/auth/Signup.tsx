@@ -29,7 +29,7 @@ const Signup = () => {
       registerRequest(formData).then((userContext) => {
         if(userContext) {
           login(userContext);
-          navigate(config.routes.homeRoute);
+          navigate(config.routes.allTasksRoute);
         }
       })
       .catch(() => {

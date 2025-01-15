@@ -4,7 +4,7 @@ export const config: CONFIG_TYPES = {
     express: {
         PORT: 3000,
     },
-    db: 'mongodb://localhost:27017/webTech?authSource=admin',
+    db: 'mongodb://localhost:37017/webTech?authSource=admin',
     mongoQueryLimit: 500,
     jwt_secret: 'cheie_secreta_nebuna',
     cookieConfig: {

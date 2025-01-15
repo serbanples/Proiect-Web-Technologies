@@ -25,7 +25,7 @@ const Login = () => {
     await loginRequest(formData).then((userContext) => {
       if(userContext) {
         login(userContext);
-        navigate(config.routes.homeRoute);
+        navigate(config.routes.allTasksRoute);
       }
     })
     .catch(() => {

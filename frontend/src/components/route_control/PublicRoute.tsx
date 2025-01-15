@@ -10,7 +10,7 @@ const PublicRoute: React.FC = () => {
     return <div>Loading...</div>
   }
   
-  return !auth.user ? <Outlet /> : <Navigate to={config.routes.homeRoute} />;
+  return !auth.user ? <Outlet /> : <Navigate to={config.routes.allTasksRoute} />;
 }
 
 export default PublicRoute;

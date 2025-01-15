@@ -9,8 +9,9 @@ export class TeamModel extends AbstractModel<TeamModelType> {
         name: { type: String, required: true, unique: true },
         members: [{ type: mongoose.Types.ObjectId, ref: ModelNameEnum.USER }],
         createdBy: { type: mongoose.Types.ObjectId, ref: ModelNameEnum.USER },
-        createdAt: { type: Date },
-        projects: [{ type: mongoose.Types.ObjectId, ref: ModelNameEnum.PROJECT }],
+        createdAt: { type: Date, default: new Date() },
+        updatedAt: { type: Date, default: new Date() },
+        description: { type: String }
     }
 
     protected SchemaOptions: mongoose.SchemaOptions = {

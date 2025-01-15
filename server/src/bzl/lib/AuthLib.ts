@@ -107,7 +107,7 @@ export class AuthLib {
      * @param {string} password original password.
      * @returns {Promise<string>} hashed password
      */
-    private hashPassword(password: string): Promise<string> {
+    public hashPassword(password: string): Promise<string> {
         return bcrypt.hash(password, this.hashSalt);
     }
 

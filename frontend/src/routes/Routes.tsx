@@ -21,7 +21,7 @@ const AppRoutes: React.FC = () => {
       <Route path='/' element={<BaseRoutePage />} />
       <Route path={config.routes.baseRoute} element={<ProtectedRoute />}>
         <Route path={config.routes.dashboardRoute} element={<Dashboard />} >
-          <Route path={config.routes.homeRoute} element={<Home />} />
+          <Route path={config.routes.allTasksRoute} element={<Home />} />
           <Route path={config.routes.myTasksRoute} element={<MyTasks />} />
         </Route>
       </Route>

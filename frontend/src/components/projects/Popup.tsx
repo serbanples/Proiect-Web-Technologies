@@ -4,10 +4,11 @@ import { x } from 'react-icons-kit/feather/x';
 import './Popup.scss';
 import { Task, User } from '../types';
 import { prioritySettings } from '../../config/tasks';
-import { findTaskByIdRequest, updateTaskRequest } from '../../services/taskService';
+import { findTaskByIdRequest, getTaskStatusesRequest, updateTaskRequest } from '../../services/taskService';
 import { findUsersRequest } from '../../services/userService';
 import { useAuth } from '../../contexts/AuthContext';
 import Dropdown from '../dropdown/Dropdown';
+import { TaskStatusEnum } from '../../services/serviceTypes';
 
 type PopupProps = {
   isOpen: boolean;
@@ -44,6 +45,7 @@ const Popup: React.FC<PopupProps> = ({
   const [task, setTask] = useState<Task | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const [updateBody, setUpdateBody] = useState({})
+  const [statuses, setStatuses] = useState<{ value: TaskStatusEnum, label: string }[]>([]);
 
   const { auth } = useAuth();
 
@@ -63,12 +65,22 @@ const Popup: React.FC<PopupProps> = ({
       .catch((error) => {
         console.error('Error fetching users:', error);
       });
+
+    getTaskStatusesRequest().then((statuses) => {
+      setStatuses(statuses);
+    })
+    .catch((error) => {
+      console.error('Error fetching statuses:', error);
+    });
   }, [])
 
-  // const onAssigneeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   console.log('assignee', event.target.value);
-  //   setUpdateBody({ assignedTo: event.target.value });
-  // } 
+  const handleUpdate = (key: string, value: string) => {
+    setUpdateBody({ ...updateBody, [key]: value });
+
+    if (task) {
+      setTask({ ...task, [key]: value });
+    }
+  }
 
   const confirmUpdate = () => {
     updateTaskRequest(id, updateBody)
@@ -110,27 +122,37 @@ const Popup: React.FC<PopupProps> = ({
               {task ? task?.priority.charAt(0).toUpperCase() + task?.priority.slice(1) : 'Low'}
             </span>
           </div>
+          <div className='info-row'>
+            <span className="label">Status:</span>
+            { canUpdate && task ? (
+              <Dropdown
+                defaultOption={statuses.find((status) => status.value === task.status) || { label: 'Unknown', value: 'Unknown' }}
+                options={statuses.map((status) => ({ label: status.label, value: status.value, disabled: status.value === task?.status }))}
+                onChange={(option) => handleUpdate('status', option.value)}
+              />
+            ) : (
+              <span>{statuses.find((status) => status.value === task?.status)?.label || 'Unknown'}</span>
+            )}
+          </div>
+          <div className="info-row">
+            <span className="label">Percentage Completed:</span>
+            { canUpdate && task && task.status === 'inProgress' ? (
+              <Dropdown
+                defaultOption={{ label: `${task.percentageCompleted}%` || 'Unknown', value: task.percentageCompleted.toString() || 'Unknown' }}
+                options={Array.from({ length: 11 }, (_, i) => ({ label: `${i * 10}%`, value: (i * 10).toString() }))}
+                onChange={(option) => handleUpdate('percentageCompleted', option.value)}
+              />
+            ) : (
+              <span>{task?.percentageCompleted + '%'}</span>
+            )}
+          </div>
           <div className="info-row">
             <span className="label">Assignee:</span>
-            { canUpdate ? (
-              // <>
-              // <select
-              //   value={task?.assignedTo.name}
-              //   onChange={onAssigneeChange}
-              //   onClick={(e) => e.stopPropagation()}
-              // >
-              // <option value="Unassigned">Unassigned</option>
-              //   {users.map((user) => (
-              //     <option key={user.id} value={user.id} disabled={user.id === auth.user?.id}>
-              //       {user.name}
-              //     </option>
-              //   ))}
-              // </select>
-              // </>
+            { canUpdate && task ? (
               <Dropdown
-                defaultOption={{ label: task?.assignedTo.name || 'Unassigned', value: task?.assignedTo.id || 'Unassigned' }}
+                defaultOption={{ label: task.assignedTo.name || 'Unassigned', value: task.assignedTo.id || 'Unassigned' }}
                 options={users.map((user) => ({ label: user.name, value: user.id, disabled: user.id === auth.user?.id }))}
-                onChange={(option) => setUpdateBody({ assignedTo: option.value })}
+                onChange={(option) => handleUpdate('assignedTo', option.value)}
               />
             ) : (
               <span>{task?.assignedTo.name}</span>
