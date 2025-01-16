@@ -9,7 +9,7 @@ import Dashboard from '../components/dashboard/Dashboard';
 import Home from '../pages/general/home/Home';
 import NotFound from '../pages/common/NotFound';
 import BaseRoutePage from '../pages/common/BaseRoutePage';
-import MyTasks from '../pages/general/MyTasks/MyTasks';
+import MyTasks from '../pages/general/MyTasks/MyProfile';
 import Projects from '../pages/general/Projects/Projects';
 import Teams from '../pages/general/Teams/Teams';
 

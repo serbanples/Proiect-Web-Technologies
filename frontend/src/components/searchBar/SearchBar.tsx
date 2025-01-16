@@ -3,6 +3,7 @@ import { Icon } from 'react-icons-kit';
 import { search } from 'react-icons-kit/feather';
 import Filter from './Filter';
 import { useState } from 'react';
+import './SearchBar.scss';
 
 type SearchBarProps = {
   id: string;
