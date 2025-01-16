@@ -12,3 +12,11 @@ export const browseProjectsRequest = async (filters?: object) => {
           }
       })
 }
+
+export const updateProjectRequest = async (projectId: any, project: any) => {
+  return POST_REQUEST('/project/update', { id: projectId, project: project })
+      .then(async (response) => {
+          const task = await response.json();
+          return task.result as any;
+      })
+}

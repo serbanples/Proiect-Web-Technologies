@@ -27,7 +27,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const projectid = searchParams.get('project');
-    browseTasksRequest({ project: projectid })
+    browseTasksRequest(projectid ? { project: projectid } : {})
       .then((response) => {
         const tasks = response;
         const groupedTasks = tasks.reduce((acc, task) => {
