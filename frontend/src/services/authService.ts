@@ -42,6 +42,10 @@ export const registerRequest = async (registerFormData: Record<string, string>) 
         });
 }
 
+export const logoutRequest = async () => {
+    return POST_REQUEST('/auth/logout', {})
+}
+
 export const whoamiRequest = async () => {
     return GET_REQUEST('/auth/whoami');
 }

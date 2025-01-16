@@ -4,16 +4,18 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { Task } from "../../../components/types";
 import TaskBox from "../../../components/projects/TaskBox";
 import './MyTasks.scss';
-import SearchBar from "../../../components/searchBar/SearchBar";
 import _ from "lodash";
+import { logoutRequest } from "../../../services/authService";
+import { useNavigate } from "react-router-dom";
+import { config } from "../../../config/config";
 
 const MyTasks = () => {
-  const { auth } = useAuth();
+  const { auth, logout } = useAuth();
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [filters, setFilters] = useState<any>({});
+  const nav = useNavigate();
 
   const refreshTasks = () => {
-    findTasksByAssigneeRequest(auth.user?.id || '', filters)
+    findTasksByAssigneeRequest(auth.user?.id || '', {})
       .then((tasks) => {
         setTasks(tasks);
       }).catch((error) => {
@@ -21,22 +23,25 @@ const MyTasks = () => {
       });
   }
 
-  const handleFilterChange = (option: any) => {
-    if(option.value === 'any') {
-      option.value = undefined;
-    }
-    setFilters({ ...filters, [option.key]: option.value });
+  const logoutAction = () => {
+    logoutRequest().then(() => {
+      return logout()
+    })
+    .then(() => nav(config.routes.loginRoute))
   }
 
   useEffect(() => {
     refreshTasks();
-  }, [filters]);
+  }, []);
 
   
   return (
     <div className="my-tasks-page">
-      <div className="my-tasks-search-container">
-        <SearchBar id="my-tasks" onFilterChange={handleFilterChange} />
+      <div className="profile-data">
+        Profile:
+        <div>{auth.user?.email}</div>
+        <div>{auth.user?.role}</div>
+        <button onClick={() => logoutAction()}>Logout</button>
       </div>
       <div className="my-tasks-container">
         {tasks.map((task) => (
