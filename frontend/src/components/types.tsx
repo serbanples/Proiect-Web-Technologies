@@ -23,8 +23,11 @@ export enum Status {
 }
 
 export type Project = {
-  id: number;
+  id: string;
   name: string;
+  team: {
+    
+  }
   description: string;
   status: Status;
   dueDate: string;

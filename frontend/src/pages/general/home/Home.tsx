@@ -6,10 +6,12 @@ import { browseTasksRequest, getTaskStatusesRequest } from '../../../services/ta
 import { Task } from '../../../components/types';
 import { TaskStatusEnum } from '../../../services/serviceTypes';
 import { useAuth } from '../../../contexts/AuthContext';
+import { useSearchParams } from 'react-router-dom';
 
 const Home: React.FC = () => {  
   const [statuses, setStatuses] = useState<{ value: TaskStatusEnum, label: string }[]>([]);
   const [taskGroups, setTaskGroups] = useState<Record<string, Task[]>>({});
+  const [searchParams, _] = useSearchParams();
 
   const { auth } = useAuth();
 
@@ -24,7 +26,8 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    browseTasksRequest()
+    const projectid = searchParams.get('project');
+    browseTasksRequest({ project: projectid })
       .then((response) => {
         const tasks = response;
         const groupedTasks = tasks.reduce((acc, task) => {

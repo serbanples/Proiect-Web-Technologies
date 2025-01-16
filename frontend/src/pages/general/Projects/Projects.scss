@@ -1,0 +1,81 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    
+    &__container {
+      background-color: #f3f4f6;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 500ms ease-in-out;
+      position: relative;
+      overflow: hidden;
+      
+      &:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+      
+      &--expanded {
+        grid-column: span 3;
+        
+        .grid__content {
+          height: 12rem;
+          margin-top: 1rem;
+          opacity: 1;
+        }
+      }
+      
+      // Color variants
+      &--blue { background-color: #bfdbfe; }
+      &--green { background-color: #bbf7d0; }
+      &--yellow { background-color: #fef08a; }
+      &--purple { background-color: #ddd6fe; }
+      &--pink { background-color: #fbcfe8; }
+      &--orange { background-color: #fed7aa; }
+    }
+    
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      h2 {
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+      
+      button {
+        color: #4b5563;
+        transition: color 300ms ease;
+        
+        &:hover {
+          color: #1f2937;
+        }
+      }
+    }
+    
+    &__content {
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 500ms ease-in-out;
+      
+      p {
+        margin-bottom: 0.5rem;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  
+  // Base page styles
+  .page {
+    min-height: 100vh;
+    // background-color: #f9fafb;
+    padding: 1rem;
+  }

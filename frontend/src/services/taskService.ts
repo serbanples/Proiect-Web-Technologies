@@ -3,8 +3,8 @@ import { GET_REQUEST, POST_REQUEST } from "./requests";
 import { TaskStatusEnum } from "./serviceTypes";
 import { Task } from "../components/types";
 
-export const browseTasksRequest = async () => {
-    return POST_REQUEST('/task/browse', { populate: true })
+export const browseTasksRequest = async (filter?: object) => {
+    return POST_REQUEST('/task/browse', { ...filter, populate: true })
         .then(async (response) => {
             if(response.status === 200) {
                 const tasks = await response.json();

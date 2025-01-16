@@ -7,7 +7,8 @@ export const config: config_types = {
         dashboardRoute: '/dashboard',
         myTasksRoute: '/dashboard/my-tasks',
         baseRoute: '/',
-        authBaseRoute: '/auth'
+        authBaseRoute: '/auth',
+        allProjectRoute: '/dashboard/projects'
     },
 }
 
@@ -21,5 +22,6 @@ interface config_types {
         readonly myTasksRoute: string;
         readonly baseRoute: string;
         readonly authBaseRoute: string;
+        readonly allProjectRoute: string;
     };
 }

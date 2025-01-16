@@ -24,6 +24,7 @@ export class ProjectModel extends AbstractModel<ProjectModelType>{
 
     protected populateOptions: PopulateOpts = [
         { path: 'createdBy', model: ModelNameEnum.USER, select: 'name email' },
+        { path: 'team', model: ModelNameEnum.TEAM, select: 'name'}
     ];
 
     constructor(Mongoose: mongoose.Mongoose) {
