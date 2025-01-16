@@ -51,12 +51,12 @@ const Projects: React.FC = () => {
             </div>
             
             <div className="grid__content">
-              <p className="mt-2">{project.description}</p>
+              <p className="mt-2">{project?.description}</p>
               <div className="project-details">
-                <div>Project started on: {project.createdAt}</div>
-                <div>Project leader: {project.createdBy.email}</div>
-                <div onClick={() => nav(`/dashboard/all-tasks?project=${project.id}`)}>See tasks</div>
-                <div onClick={() => nav(`/dashboard/teams?team=${project.team.id}`)}>Project team: {project.team.name}</div>
+                <div>Project started on: {project?.createdAt}</div>
+                <div>Project leader: {project?.createdBy?.email}</div>
+                <div onClick={() => nav(`/dashboard/all-tasks?project=${project?.id}`)}>See tasks</div>
+                <div onClick={() => nav(`/dashboard/teams?team=${project?.team?.id}`)}>Project team: {project?.team?.name}</div>
               </div>
             </div>
           </div>

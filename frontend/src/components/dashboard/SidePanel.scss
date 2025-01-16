@@ -81,21 +81,62 @@
   left: 5px;
 }
 
+/* Side Icons Styling */
 .side-icons {
-  margin-top: 30px; /* Adjust spacing between the burger and icons */
+  margin-top: 30px; /* Space between the burger menu and icons */
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-left: 10px;
-  // display: none; /* Hide icons in collapsed state */
+  align-items: flex-start; /* Align text to the left */
+  gap: 15px; /* Spacing between icons */
+  padding-left: 15px; /* Adjust left padding for icons */
 }
 
-// .side-panel.open .side-icons {
-//   display: flex; /* Show icons when panel is open */
-// }
+.side-icons a {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the icon and text */
+  text-decoration: none; /* Remove underline from links */
+  color: black; /* Icon and text color */
+  font-size: 16px; /* Text size */
+  transition: all 0.3s ease-in-out; /* Smooth hover transition */
+  border-radius: 8px; /* Rounded background on hover */
+  padding: 8px 12px; /* Padding for better clickability */
+}
+
+.side-icons a:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
+  color: #e1e1e1; /* Highlight color on hover */
+  transform: translateX(5px); /* Slight slide effect */
+}
+
+.side-icons a:active {
+  transform: translateX(8px) scale(0.98); /* Active click effect */
+}
+
+.side-icons .icon {
+  font-size: 24px; /* Adjust icon size */
+}
 
 .side-icons span {
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
+  font-weight: 500; /* Medium font weight for text */
+  opacity: 0; /* Hide text by default for collapsed sidebar */
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Prevent text overflow */
+  transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out; /* Smooth text reveal */
+}
+
+.side-panel.open .side-icons span {
+  opacity: 1; /* Show text when sidebar is expanded */
+}
+
+.side-panel.open .side-icons a {
+  justify-content: flex-start; /* Align icons and text in open state */
+}
+
+.side-icons a .icon {
+  transition: color 0.3s ease-in-out; /* Smooth icon color transition */
+}
+
+.side-icons a:hover .icon {
+  color: #ffe58f; /* Match hover text color for icon */
 }

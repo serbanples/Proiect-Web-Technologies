@@ -110,7 +110,7 @@ const Popup: React.FC<PopupProps> = ({
           </div>
           <div className="info-row">
             <span className="label">Project:</span>
-            <span className={`project-tag`}>{task?.project.name}</span>
+            <span className={`project-tag`}>{task?.project?.name}</span>
           </div>
           <div className="info-row">
             <span className="label">Priority:</span>
@@ -150,7 +150,7 @@ const Popup: React.FC<PopupProps> = ({
             <span className="label">Assignee:</span>
             { canUpdate && task ? (
               <Dropdown
-                defaultOption={{ label: task.assignedTo.name || 'Unassigned', value: task.assignedTo.id || 'Unassigned' }}
+                defaultOption={{ label: task?.assignedTo?.name || 'Unassigned', value: task?.assignedTo?.id || 'Unassigned' }}
                 options={users.map((user) => ({ label: user.name, value: user.id, disabled: user.id === auth.user?.id }))}
                 onChange={(option) => handleUpdate('assignedTo', option.value)}
               />

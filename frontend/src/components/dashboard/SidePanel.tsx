@@ -2,34 +2,17 @@ import React from 'react';
 import './SidePanel.scss';
 import { Link } from 'react-router-dom';
 import { config } from '../../config/config';
-import {tasks} from 'react-icons-kit/fa/tasks';
-// import {home} from 'react-icons-kit/feather/home';
+// import {tasks} from 'react-icons-kit/fa/tasks';
+import {grid} from 'react-icons-kit/feather/grid';
 import Icon from 'react-icons-kit';
+import {user} from 'react-icons-kit/feather/user';
+import {checklist} from 'react-icons-kit/oct/checklist';
+import {users} from 'react-icons-kit/feather/users';
 
 interface SidePanelProps {
   isOpen: boolean;
   togglePanel: () => void;
 }
-
-interface MenuItemType {
-  icon: any;
-  label: string;
-  subroutes: {
-    route: string;
-    label: string;  
-  }[];
-}
-
-const menuItems: MenuItemType[] = [
-  {
-    icon: tasks,
-    label: "Tasks",
-    subroutes: [
-      { route: config.routes.myTasksRoute, label: "My Tasks" },
-      { route: config.routes.allTasksRoute, label: "All Tasks" },
-    ],
-  },
-];
 
 const SidePanel: React.FC<SidePanelProps> = ({ isOpen, togglePanel }) => {
   return (
@@ -46,29 +29,25 @@ const SidePanel: React.FC<SidePanelProps> = ({ isOpen, togglePanel }) => {
 
       {/* Panel content */}
       <div className="side-icons">
-        {/* <Link to={config.routes.myTasksRoute}>
-          <Icon icon={tasks} size={24} />
-          { isOpen && <span>My Tasks</span> }
+        <Link to={config.routes.allTasksRoute}>
+          <Icon icon={checklist} size={24} />
+          { isOpen && <span>Tasks</span> }  
         </Link>
-        <Link to={config.routes.homeRoute}>
-          <Icon icon={home} size={24} />
-          { isOpen && <span>Home</span> }  
-        </Link> */}
-        {menuItems.map((item, index) => (
-          <div key={index} className='menu-item'>
-            <div className='main-route'>
-              <Icon icon={item.icon} size={24} />
-              {isOpen && <span>{item.label}</span>}
-            </div>
-            <div className='subroutes'>
-              {item.subroutes.map((subroute, subIndex) => (
-                <Link to={subroute.route} key={subIndex}>
-                  {subroute.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
+
+        <Link to={config.routes.allTeamsRoute}>
+          <Icon icon={users} size={24} />
+          { isOpen && <span>Teams</span> }
+        </Link>
+
+        <Link to={config.routes.allProjectRoute}>
+          <Icon icon={grid} size={24} />
+          { isOpen && <span>Projects</span> }
+        </Link>
+
+        <Link to={config.routes.myTasksRoute}>
+          <Icon icon={user} size={24} />
+          { isOpen && <span>My Profile</span> }
+        </Link>
       </div>
     </div>
   );
