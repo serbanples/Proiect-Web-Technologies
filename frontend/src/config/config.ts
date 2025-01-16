@@ -8,7 +8,8 @@ export const config: config_types = {
         myTasksRoute: '/dashboard/my-tasks',
         baseRoute: '/',
         authBaseRoute: '/auth',
-        allProjectRoute: '/dashboard/projects'
+        allProjectRoute: '/dashboard/projects',
+        allTeamsRoute: '/dashboard/teams',
     },
 }
 
@@ -23,5 +24,6 @@ interface config_types {
         readonly baseRoute: string;
         readonly authBaseRoute: string;
         readonly allProjectRoute: string;
+        readonly allTeamsRoute: string;
     };
 }

@@ -11,6 +11,7 @@ import NotFound from '../pages/common/NotFound';
 import BaseRoutePage from '../pages/common/BaseRoutePage';
 import MyTasks from '../pages/general/MyTasks/MyTasks';
 import Projects from '../pages/general/Projects/Projects';
+import Teams from '../pages/general/Teams/Teams';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const AppRoutes: React.FC = () => {
           <Route path={config.routes.allTasksRoute} element={<Home />} />
           <Route path={config.routes.myTasksRoute} element={<MyTasks />} />
           <Route path={config.routes.allProjectRoute} element={<Projects />} />
+          <Route path={config.routes.allTeamsRoute} element={<Teams/>} />
         </Route>
       </Route>
       {/* routes to be accessed only by logged out users */}
