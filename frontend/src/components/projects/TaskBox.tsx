@@ -14,7 +14,7 @@ type TaskBoxProps = {
 }
 
 const TaskBox: React.FC<TaskBoxProps> = ({ task, canUpdate, onUpdate }) => {
-  const currentAssignee = task.assignedTo.name || 'Unassigned';
+  const currentAssignee = task?.assignedTo?.name || 'Unassigned';
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleClosePopup = () => {
@@ -31,7 +31,7 @@ const TaskBox: React.FC<TaskBoxProps> = ({ task, canUpdate, onUpdate }) => {
       <div className="task-content">
 
         <div className="task-title">{task.name}</div>
-        <div className={`project-tag`} style={{ color: task.project.prefferedColor }}>{task.project.name}</div>
+        <div className={`project-tag`} style={{ color: task?.project?.prefferedColor }}>{task?.project?.name}</div>
 
         <div className="bottom-info">
             <div className="assignee">
