@@ -43,7 +43,7 @@ const MyProfile = () => {
         <div>{auth.user?.role}</div>
         <button onClick={() => logoutAction()}>Logout</button>
       </div>
-      <div className={styles["my-tasks-container"]}>
+      <div className="my-tasks-container">
         {tasks.map((task) => (
           <div key={task.id}>
             <TaskBox task={task} canUpdate={true} onUpdate={refreshTasks} />
